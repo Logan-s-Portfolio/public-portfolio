@@ -50,12 +50,13 @@ export interface IconButtonProps
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ className, variant, size = 'md', icon, 'aria-label': ariaLabel, ...props }, ref) => {
+    const safeSize = size || 'md';
     return (
       <button
         ref={ref}
         className={cn(
           iconButtonVariants({ variant, size }),
-          iconSizeClasses[size],
+          iconSizeClasses[safeSize as keyof typeof iconSizeClasses],
           className
         )}
         aria-label={ariaLabel}

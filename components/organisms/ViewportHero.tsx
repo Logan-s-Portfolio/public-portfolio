@@ -43,12 +43,6 @@ export interface ViewportHeroProps {
   ctaLabel?: string;
   /** CTA button href */
   ctaHref?: string;
-  /** Callback when typing completes */
-  onTypingComplete?: () => void;
-  /** Callback when intro (typing + about) completes */
-  onIntroComplete?: () => void;
-  /** Whether hero is framed by header/sidebar */
-  isFramed?: boolean;
   /** Additional wrapper class */
   className?: string;
 }
@@ -69,9 +63,6 @@ export const ViewportHero = ({
   stats = [],
   ctaLabel,
   ctaHref,
-  onTypingComplete,
-  onIntroComplete,
-  isFramed = false,
   className,
 }: ViewportHeroProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -79,11 +70,6 @@ export const ViewportHero = ({
   const [visibleCharCount, setVisibleCharCount] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-  const [isAboutFullyVisible, setIsAboutFullyVisible] = useState(false);
-
-  // Detect scroll to fade out About section when user scrolls toward cards
-  const { scrollY } = useScroll();
-  const [hasScrolledAway, setHasScrolledAway] = useState(false);
 
   // Combine all typing phrases into one string with line breaks
   const fullText = typingPhrases.join("\n");
