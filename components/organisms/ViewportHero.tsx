@@ -80,6 +80,10 @@ export const ViewportHero = ({
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
 
+  // Detect scroll to fade out About section when user scrolls toward cards
+  const { scrollY } = useScroll();
+  const [hasScrolledAway, setHasScrolledAway] = useState(false);
+
   // Combine all typing phrases into one string with line breaks
   const fullText = typingPhrases.join("\n");
   const totalChars = fullText.length;
