@@ -121,19 +121,23 @@ export const CustomSelect = ({
 
   const selectedOption = options.find(opt => opt.value === value);
   const effectiveVariant = error ? 'error' : variant;
+  const safeSize = size || 'md';
 
   // Icon size based on select size
-  const iconSize = {
+  const iconSizeMap = {
     sm: "w-4 h-4",
     md: "w-5 h-5",
     lg: "w-6 h-6",
-  }[size];
+  };
 
-  const iconPosition = {
+  const iconPositionMap = {
     sm: "right-2",
     md: "right-3",
     lg: "right-3",
-  }[size];
+  };
+
+  const iconSize = iconSizeMap[safeSize as keyof typeof iconSizeMap];
+  const iconPosition = iconPositionMap[safeSize as keyof typeof iconPositionMap];
 
   const handleSelect = (optionValue: string) => {
     onChange?.(optionValue);
