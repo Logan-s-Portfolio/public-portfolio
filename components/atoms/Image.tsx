@@ -9,7 +9,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
-import { Text } from './Text';
 
 const imageVariants = cva(
   "relative overflow-hidden",
@@ -88,9 +87,9 @@ export const Image = ({
     return (
       <figure>
         {imageContent}
-        <Text as="figcaption" variant="caption" className="mt-2">
+        <figcaption className="font-inter text-sm leading-[1.428] text-neutral-600 mt-2">
           {caption}
-        </Text>
+        </figcaption>
       </figure>
     );
   }
