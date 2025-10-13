@@ -42,16 +42,14 @@ export const ProjectsGrid = ({
   isFramed = false,
   className,
 }: ProjectsGridProps) => {
-  if (!isVisible) return null;
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={cn(
         "flex items-center justify-center px-4 md:px-6 lg:px-8 py-24 md:py-32",
+        isVisible ? "" : "pointer-events-none",
         className
       )}
     >

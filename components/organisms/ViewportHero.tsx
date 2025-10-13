@@ -149,7 +149,7 @@ export const ViewportHero = ({
     if (shouldReduceMotion) {
       // Show about immediately if reduced motion
       setShowAbout(true);
-      onIntroComplete?.();
+      // Don't trigger intro complete automatically - wait for scroll
       return;
     }
 
@@ -158,17 +158,29 @@ export const ViewportHero = ({
       setShowAbout(true);
     }, 500);
 
-    // About fade takes 1s, so wait 500ms + 1000ms = 1500ms for about to complete
-    // Then wait 200ms more before nav/cards slide in for clear separation
-    const introTimer = setTimeout(() => {
-      onIntroComplete?.();
-    }, 1700);
-
     return () => {
       clearTimeout(aboutTimer);
-      clearTimeout(introTimer);
     };
-  }, [isTypingComplete, shouldReduceMotion, onIntroComplete]);
+  }, [isTypingComplete, shouldReduceMotion]);
+
+  // Fade out About section when user scrolls down, trigger nav/cards
+  useEffect(() => {
+    const unsubscribe = scrollY.on("change", (latest) => {
+      // If user has scrolled down past 200px, fade out about and trigger intro complete
+      if (latest > 200 && showAbout && !hasScrolledAway) {
+        setHasScrolledAway(true);
+        setShowAbout(false);
+        // Trigger nav slide in and cards appearance when user scrolls past About
+        onIntroComplete?.();
+      }
+      // If user scrolls back up near the top, fade about back in
+      else if (latest < 100 && !showAbout && hasScrolledAway && isTypingComplete) {
+        setShowAbout(true);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [scrollY, showAbout, hasScrolledAway, isTypingComplete, onIntroComplete]);
 
   // Get the visible text based on character count
   const visibleText = fullText.substring(0, visibleCharCount);
@@ -251,109 +263,111 @@ export const ViewportHero = ({
             )}
 
             {/* Right column - 8 cols, transforms from hero text to about content */}
-            <div className="lg:col-span-8 relative">
-              {/* Hero text content - fades out when about fades in */}
-              <motion.div
-                initial={{ opacity: 1 }}
-                animate={{ opacity: showAbout ? 0 : 1 }}
-                transition={{ duration: 1 }}
-              >
-                {/* Main heading */}
-                <h1
-                  id="viewport-hero-heading"
-                  className="mb-8 font-fraunces text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-neutral-900 md:text-6xl lg:text-7xl xl:text-8xl"
-                >
-                  {greeting && (
-                    <span className="block font-inter text-2xl font-medium tracking-wide text-neutral-600 md:text-3xl lg:text-4xl">
-                      {greeting}
-                    </span>
-                  )}
-                  {name}
-                  {/* Show cursor after name only when no typing has started */}
-                  {visibleCharCount === 0 && (
-                    <motion.span
-                      className="inline-block w-1 bg-terracotta-600 ml-2"
-                      style={{
-                        height: "0.9em",
-                        verticalAlign: "baseline",
-                      }}
-                      animate={shouldReduceMotion ? {} : {
-                        opacity: [1, 0, 1],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    />
-                  )}
-                </h1>
-
-                {/* Scroll-triggered typing text with cursor - terracotta color */}
-                <div className="font-inter text-xl leading-relaxed text-terracotta-600 md:text-2xl lg:text-3xl">
-                  <span className="whitespace-pre-wrap">
-                    {shouldReduceMotion ? fullText : visibleText}
-                  </span>
-                  {/* Cursor that follows the typing - show during typing, hide when complete */}
-                  {visibleCharCount > 0 && !isTypingComplete && (
-                    <motion.span
-                      className="inline-block w-1 bg-terracotta-600 ml-1"
-                      style={{
-                        height: "1em",
-                        verticalAlign: "text-bottom",
-                      }}
-                      animate={shouldReduceMotion ? {} : {
-                        opacity: [1, 0, 1],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    />
-                  )}
-                </div>
-              </motion.div>
-
-              {/* About content - auto-fades in after typing completes */}
-              {bioParagraphs.length > 0 && (
-                <motion.div
-                  className="absolute inset-0 flex flex-col justify-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: showAbout ? 1 : 0 }}
-                  transition={{ duration: 1 }}
-                >
-                  <h2 className="mb-6 font-fraunces text-3xl font-semibold text-neutral-900 md:text-4xl lg:text-5xl">
-                    About Me
-                  </h2>
-
-                  {/* Bio paragraphs */}
-                  <div className="space-y-4">
-                    {bioParagraphs.map((para, i) => (
-                      <p
-                        key={i}
-                        className="font-inter text-base leading-relaxed text-neutral-600 md:text-lg"
-                      >
-                        {para}
-                      </p>
-                    ))}
-                  </div>
-
-                  {/* Stats grid */}
-                  {stats.length > 0 && (
-                    <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-                      {stats.map((stat, i) => (
-                        <StatCard
-                          key={i}
-                          icon={stat.icon}
-                          value={stat.value}
-                          label={stat.label}
+            <div className="lg:col-span-8">
+              <AnimatePresence mode="wait">
+                {!showAbout ? (
+                  <motion.div
+                    key="hero-text"
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                  >
+                    {/* Main heading */}
+                    <h1
+                      id="viewport-hero-heading"
+                      className="mb-8 font-fraunces text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-neutral-900 md:text-6xl lg:text-7xl xl:text-8xl"
+                    >
+                      {greeting && (
+                        <span className="block font-inter text-2xl font-medium tracking-wide text-neutral-600 md:text-3xl lg:text-4xl">
+                          {greeting}
+                        </span>
+                      )}
+                      {name}
+                      {/* Show cursor after name only when no typing has started */}
+                      {visibleCharCount === 0 && (
+                        <motion.span
+                          className="inline-block w-1 bg-terracotta-600 ml-2"
+                          style={{
+                            height: "0.9em",
+                            verticalAlign: "baseline",
+                          }}
+                          animate={shouldReduceMotion ? {} : {
+                            opacity: [1, 0, 1],
+                          }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
                         />
+                      )}
+                    </h1>
+
+                    {/* Scroll-triggered typing text with cursor - terracotta color */}
+                    <div className="font-inter text-xl leading-relaxed text-terracotta-600 md:text-2xl lg:text-3xl">
+                      <span className="whitespace-pre-wrap">
+                        {shouldReduceMotion ? fullText : visibleText}
+                      </span>
+                      {/* Cursor that follows the typing - show during typing, hide when complete */}
+                      {visibleCharCount > 0 && !isTypingComplete && (
+                        <motion.span
+                          className="inline-block w-1 bg-terracotta-600 ml-1"
+                          style={{
+                            height: "1em",
+                            verticalAlign: "text-bottom",
+                          }}
+                          animate={shouldReduceMotion ? {} : {
+                            opacity: [1, 0, 1],
+                          }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                        />
+                      )}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="about-content"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                  >
+                    <h2 className="mb-6 font-fraunces text-3xl font-semibold text-neutral-900 md:text-4xl lg:text-5xl">
+                      About Me
+                    </h2>
+
+                    {/* Bio paragraphs */}
+                    <div className="space-y-4">
+                      {bioParagraphs.map((para, i) => (
+                        <p
+                          key={i}
+                          className="font-inter text-base leading-relaxed text-neutral-600 md:text-lg"
+                        >
+                          {para}
+                        </p>
                       ))}
                     </div>
-                  )}
-                </motion.div>
-              )}
+
+                    {/* Stats grid */}
+                    {stats.length > 0 && (
+                      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+                        {stats.map((stat, i) => (
+                          <StatCard
+                            key={i}
+                            icon={stat.icon}
+                            value={stat.value}
+                            label={stat.label}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
