@@ -5,7 +5,7 @@
  * Shows responsive grid layout (3→2→1 columns) and load more functionality.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { ProjectGrid } from "./ProjectGrid";
 
 const meta = {

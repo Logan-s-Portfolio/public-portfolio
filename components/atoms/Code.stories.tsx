@@ -5,7 +5,7 @@
  * JetBrains Mono font, terracotta/neutral colors, 8-point grid spacing.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Code } from './Code';
 import { Text } from './Text';
 

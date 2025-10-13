@@ -4,7 +4,7 @@
  * Multi-line text input with character counter.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { TextArea } from './TextArea';
 import { FormField } from './FormField';
 import { useState } from 'react';

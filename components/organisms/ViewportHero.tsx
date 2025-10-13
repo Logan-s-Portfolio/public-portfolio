@@ -45,8 +45,8 @@ export interface ViewportHeroProps {
   ctaHref?: string;
   /** Callback when typing completes */
   onTypingComplete?: () => void;
-  /** Callback when about transition completes */
-  onAboutTransitionComplete?: () => void;
+  /** Callback when intro (typing + about) completes */
+  onIntroComplete?: () => void;
   /** Whether hero is framed by header/sidebar */
   isFramed?: boolean;
   /** Additional wrapper class */
@@ -70,7 +70,7 @@ export const ViewportHero = ({
   ctaLabel,
   ctaHref,
   onTypingComplete,
-  onAboutTransitionComplete,
+  onIntroComplete,
   isFramed = false,
   className,
 }: ViewportHeroProps) => {
@@ -78,62 +78,7 @@ export const ViewportHero = ({
   const shouldReduceMotion = useReducedMotion();
   const [visibleCharCount, setVisibleCharCount] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [isAboutTransitionComplete, setIsAboutTransitionComplete] = useState(false);
-  const [manualProgress, setManualProgress] = useState(0);
-  const currentScrollProgress = useRef(0);
-
-  // Scroll progress for transitioning to about section
-  // Keep hero in view during entire transition
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "start -100vh"],
-  });
-
-  // Transform values for the about transition
-  // Use manual progress when framed, scroll progress otherwise
-  const effectiveProgress = isFramed ? manualProgress : scrollYProgress.get();
-
-  // Calculate opacity values based on progress
-  const getTextOpacity = () => {
-    if (!isTypingComplete) return 1;
-    if (isFramed) {
-      // Manual progress: 0-0.2 fade out text (faster)
-      return manualProgress <= 0.2 ? 1 - (manualProgress / 0.2) : 0;
-    }
-    return textOpacity.get();
-  };
-
-  const getAboutContentOpacity = () => {
-    if (!isTypingComplete) return 0;
-    if (isFramed) {
-      // Manual progress: 0.25-0.6 fade in about content (tighter, starts sooner)
-      if (manualProgress < 0.25) return 0;
-      if (manualProgress > 0.6) return 1;
-      return (manualProgress - 0.25) / 0.35;
-    }
-    return aboutContentOpacity.get();
-  };
-
-  const textOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.3],
-    [1, 0]
-  );
-  const photoScale = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    [1, 0.7]
-  );
-  const photoY = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    [0, -100]
-  );
-  const aboutContentOpacity = useTransform(
-    scrollYProgress,
-    [0.4, 0.8],
-    [0, 1]
-  );
+  const [showAbout, setShowAbout] = useState(false);
 
   // Combine all typing phrases into one string with line breaks
   const fullText = typingPhrases.join("\n");
@@ -190,83 +135,36 @@ export const ViewportHero = ({
     };
   }, [isTypingComplete, totalChars, onTypingComplete, shouldReduceMotion]);
 
-  // After typing completes, unlock scroll briefly
+  // Auto-fade about section after typing completes
   useEffect(() => {
-    if (isTypingComplete) {
-      document.body.style.overflow = '';
-    }
-  }, [isTypingComplete]);
+    if (!isTypingComplete) return;
 
-  // Track scroll progress and mark transition as complete
-  useEffect(() => {
+    // Unlock scroll immediately
+    document.body.style.overflow = '';
+
     if (shouldReduceMotion) {
-      setIsAboutTransitionComplete(true);
+      // Show about immediately if reduced motion
+      setShowAbout(true);
+      onIntroComplete?.();
       return;
     }
 
-    const unsubscribe = scrollYProgress.on('change', (latest) => {
-      currentScrollProgress.current = latest;
+    // Wait 500ms, then fade in about content
+    const aboutTimer = setTimeout(() => {
+      setShowAbout(true);
+    }, 500);
 
-      // About content opacity reaches 1 at scrollYProgress = 0.6 (updated)
-      if (latest >= 0.6 && isFramed && !isAboutTransitionComplete) {
-        setIsAboutTransitionComplete(true);
-        // Don't unlock scroll here - ProjectsGrid will take over
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [isFramed, isAboutTransitionComplete, scrollYProgress, shouldReduceMotion]);
-
-  // Call callback and unlock scroll when about transition completes
-  useEffect(() => {
-    if (isAboutTransitionComplete) {
-      onAboutTransitionComplete?.();
-      document.body.style.overflow = "";
-    }
-  }, [isAboutTransitionComplete, onAboutTransitionComplete]);
-
-  // NEW LOCK: Once header/sidebar are framed, use wheel events to drive transition manually
-  useEffect(() => {
-    if (shouldReduceMotion || !isFramed || isAboutTransitionComplete) return;
-
-    let scrollAccumulator = 0;
-    const scrollPerProgress = 800; // How much wheel delta needed to reach 100% progress (reduced for tighter feel)
-
-    const handleWheel = (e: WheelEvent) => {
-      // Prevent all actual scrolling
-      e.preventDefault();
-
-      // Accumulate scroll delta
-      scrollAccumulator += e.deltaY;
-
-      // Clamp between 0 and scrollPerProgress
-      scrollAccumulator = Math.max(0, Math.min(scrollAccumulator, scrollPerProgress));
-
-      // Calculate progress (0 to 1)
-      const progress = scrollAccumulator / scrollPerProgress;
-      setManualProgress(progress);
-
-      // Check if transition is complete (at 60% now instead of 100%)
-      if (progress >= 0.6) {
-        setIsAboutTransitionComplete(true);
-      }
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      // Prevent touch scrolling on mobile
-      e.preventDefault();
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    // About fade takes 1s, so wait 500ms + 1000ms = 1500ms for about to complete
+    // Then wait 200ms more before nav/cards slide in for clear separation
+    const introTimer = setTimeout(() => {
+      onIntroComplete?.();
+    }, 1700);
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchmove', handleTouchMove);
+      clearTimeout(aboutTimer);
+      clearTimeout(introTimer);
     };
-  }, [isFramed, isAboutTransitionComplete, shouldReduceMotion]);
+  }, [isTypingComplete, shouldReduceMotion, onIntroComplete]);
 
   // Get the visible text based on character count
   const visibleText = fullText.substring(0, visibleCharCount);
@@ -276,10 +174,10 @@ export const ViewportHero = ({
       id="viewport-hero"
       ref={containerRef}
       animate={{
-        minHeight: isAboutTransitionComplete ? "50vh" : (isFramed ? "calc(100vh - 64px)" : "100vh"),
+        minHeight: "100vh",
         width: isFramed ? "calc(100vw - 256px)" : "100vw",
       }}
-      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+      transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       className={cn(
         "flex flex-col overflow-hidden",
         className
@@ -329,32 +227,32 @@ export const ViewportHero = ({
                   </div>
                 </div>
 
-                {/* Name and location - appear after typing completes on scroll */}
-                {isTypingComplete && (
-                  <motion.div
-                    className="mt-4 text-center"
-                    style={{ opacity: shouldReduceMotion ? 1 : (isFramed ? getAboutContentOpacity() : aboutContentOpacity) }}
-                  >
-                    <p className="font-inter text-base font-medium text-neutral-900">
-                      {name}
+                {/* Name and location - fade in with about section */}
+                <motion.div
+                  className="mt-4 text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: showAbout ? 1 : 0 }}
+                  transition={{ duration: 1 }}
+                >
+                  <p className="font-inter text-base font-medium text-neutral-900">
+                    {name}
+                  </p>
+                  {location && (
+                    <p className="font-inter text-sm text-neutral-600">
+                      {location}
                     </p>
-                    {location && (
-                      <p className="font-inter text-sm text-neutral-600">
-                        {location}
-                      </p>
-                    )}
-                  </motion.div>
-                )}
+                  )}
+                </motion.div>
               </div>
             )}
 
             {/* Right column - 8 cols, transforms from hero text to about content */}
             <div className="lg:col-span-8 relative">
-              {/* Hero text content - fades out on scroll after typing completes */}
+              {/* Hero text content - fades out when about fades in */}
               <motion.div
-                style={{
-                  opacity: isTypingComplete && !shouldReduceMotion ? (isFramed ? getTextOpacity() : textOpacity) : 1,
-                }}
+                initial={{ opacity: 1 }}
+                animate={{ opacity: showAbout ? 0 : 1 }}
+                transition={{ duration: 1 }}
               >
                 {/* Main heading */}
                 <h1
@@ -413,11 +311,13 @@ export const ViewportHero = ({
                 </div>
               </motion.div>
 
-              {/* About content - fades in on scroll after typing completes */}
-              {isTypingComplete && bioParagraphs.length > 0 && (
+              {/* About content - auto-fades in after typing completes */}
+              {bioParagraphs.length > 0 && (
                 <motion.div
                   className="absolute inset-0 flex flex-col justify-center"
-                  style={{ opacity: shouldReduceMotion ? 1 : (isFramed ? getAboutContentOpacity() : aboutContentOpacity) }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: showAbout ? 1 : 0 }}
+                  transition={{ duration: 1 }}
                 >
                   <h2 className="mb-6 font-fraunces text-3xl font-semibold text-neutral-900 md:text-4xl lg:text-5xl">
                     About Me

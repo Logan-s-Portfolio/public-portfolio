@@ -5,7 +5,7 @@
  * 300ms transitions, WCAG underlines, external icons (16px, 4px gap).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Link } from './Link';
 
 const meta = {

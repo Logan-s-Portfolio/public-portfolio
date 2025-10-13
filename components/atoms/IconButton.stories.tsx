@@ -5,7 +5,7 @@
  * Perfect circles (32px/40px/48px), responsive icons, 300ms transitions.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { IconButton } from './IconButton';
 
 // Common icon set for stories

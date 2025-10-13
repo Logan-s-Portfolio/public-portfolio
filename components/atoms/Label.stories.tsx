@@ -4,7 +4,7 @@
  * Form field labels using design system (Inter medium, neutral-700, terracotta required indicator).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Label } from './Label';
 import { Input } from './Input';
 

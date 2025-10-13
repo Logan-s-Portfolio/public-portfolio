@@ -5,7 +5,7 @@
  * Shows hero section, main content, and optional sidebar.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { ContentLayout } from "./ContentLayout";
 
 const meta = {

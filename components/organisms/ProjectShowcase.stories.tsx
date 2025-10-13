@@ -5,7 +5,7 @@
  * Shows featured projects section with image/content alternating sides.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { ProjectShowcase } from "./ProjectShowcase";
 
 const meta = {

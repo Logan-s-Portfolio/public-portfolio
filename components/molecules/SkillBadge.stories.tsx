@@ -4,7 +4,7 @@
  * Display skills with proficiency indicators.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { SkillBadge } from './SkillBadge';
 
 const meta = {

@@ -4,7 +4,7 @@
  * Visual separators using design system (neutral-200 border, bg-background-elevated labels).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Divider } from './Divider';
 
 const meta = {

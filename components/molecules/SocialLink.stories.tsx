@@ -4,7 +4,7 @@
  * Social media links with icons and tooltips.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { SocialLink } from './SocialLink';
 
 const meta = {

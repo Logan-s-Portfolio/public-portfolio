@@ -53,8 +53,7 @@ const navigationItems = [
 ];
 
 export default function HomePage() {
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [isAboutComplete, setIsAboutComplete] = useState(false);
+  const [isIntroComplete, setIsIntroComplete] = useState(false);
 
   const bioParagraphs = [
     "I'm a product designer and entrepreneur based in Austin, TX. With over 10 years of experience, I specialize in creating intuitive, beautiful interfaces that users love and businesses need.",
@@ -131,10 +130,10 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-white via-white to-sage-50/30">
-      {/* Sidebar slides in from left - fixed positioned overlay */}
+      {/* Sidebar slides in from left after intro completes */}
       <motion.div
         initial={{ x: -256 }}
-        animate={{ x: isTypingComplete ? 0 : -256 }}
+        animate={{ x: isIntroComplete ? 0 : -256 }}
         transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
         className="fixed left-0 top-0 z-40 h-screen"
       >
@@ -145,7 +144,7 @@ export default function HomePage() {
       <div
         className="relative"
         style={{
-          paddingLeft: isTypingComplete ? "256px" : 0,
+          paddingLeft: isIntroComplete ? "256px" : 0,
           transition: "padding 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
         }}
       >
@@ -164,17 +163,16 @@ export default function HomePage() {
           bioParagraphs={bioParagraphs}
           ctaLabel="Read Full Story"
           ctaHref="/about"
-          onTypingComplete={() => setIsTypingComplete(true)}
-          onAboutTransitionComplete={() => setIsAboutComplete(true)}
-          isFramed={isTypingComplete}
+          onIntroComplete={() => setIsIntroComplete(true)}
+          isFramed={isIntroComplete}
         />
       </div>
 
       {/* Projects Grid - scrollable section after hero */}
       <ProjectsGrid
         projects={projects}
-        isVisible={isAboutComplete}
-        isFramed={isTypingComplete}
+        isVisible={isIntroComplete}
+        isFramed={isIntroComplete}
       />
 
     </div>

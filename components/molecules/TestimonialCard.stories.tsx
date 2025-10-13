@@ -4,7 +4,7 @@
  * Client/colleague testimonials with attribution.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { TestimonialCard } from './TestimonialCard';
 
 const meta = {

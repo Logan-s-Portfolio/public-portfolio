@@ -5,7 +5,7 @@
  * Shows animated gradients and floating particles.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { AnimatedBackground } from "./AnimatedBackground";
 
 const meta = {

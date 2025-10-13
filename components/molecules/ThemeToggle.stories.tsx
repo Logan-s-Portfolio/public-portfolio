@@ -4,7 +4,7 @@
  * Dark mode toggle switch with smooth animations.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ThemeToggle } from './ThemeToggle';
 import { useState } from 'react';
 

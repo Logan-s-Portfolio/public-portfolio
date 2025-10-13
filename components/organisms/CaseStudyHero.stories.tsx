@@ -5,7 +5,7 @@
  * Shows full-width hero for case study pages with breadcrumbs, title, tagline, and tags.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { CaseStudyHero } from "./CaseStudyHero";
 
 const meta = {

@@ -5,7 +5,7 @@
  * Shows Navbar, Footer, content area, and optional AnimatedBackground.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { PageLayout } from "./PageLayout";
 
 const meta = {

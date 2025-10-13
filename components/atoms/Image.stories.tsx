@@ -4,7 +4,7 @@
  * next/image wrapper using design system (neutral-200 skeleton, border radius tokens, 8-point grid).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Image } from './Image';
 
 const meta = {

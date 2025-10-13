@@ -4,7 +4,7 @@
  * Fully custom dropdown with complete design system styling (React Aria-based).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { CustomSelect, SelectOption } from './CustomSelect';
 import { Label } from '../atoms/Label';
 import { useState } from 'react';

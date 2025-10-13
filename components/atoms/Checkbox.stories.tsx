@@ -4,7 +4,7 @@
  * Boolean selection using design system (terracotta-600 checked, 4px radius, 150ms transitions).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Checkbox } from './Checkbox';
 import { Label } from './Label';
 import { useState } from 'react';

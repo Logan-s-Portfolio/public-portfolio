@@ -5,7 +5,7 @@
  * Shows alternating left/right layout on desktop and vertical layout on mobile.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { TimelineSection } from "./TimelineSection";
 
 const meta = {

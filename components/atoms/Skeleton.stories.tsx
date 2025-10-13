@@ -4,7 +4,7 @@
  * Content loading placeholder with warm aesthetic and subtle animations.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Skeleton } from './Skeleton';
 
 const meta = {

@@ -12,7 +12,6 @@
 
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { Navbar } from "@/components/organisms/Navbar";
 import { Footer } from "@/components/organisms/Footer";
 import { AnimatedBackground } from "@/components/organisms/AnimatedBackground";
 import { cn } from "@/lib/utils";
@@ -50,18 +49,6 @@ export const PageLayout = ({
     <div className={cn("relative flex flex-col min-h-screen", bgClass, className)}>
       {/* Animated Background (optional) */}
       {showAnimatedBg && <AnimatedBackground variant="both" opacity={0.3} />}
-
-      {/* Navbar (sticky) - slides in from top */}
-      {showNavbar && (
-        <motion.div
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-          className="sticky top-0 z-50"
-        >
-          <Navbar currentPath={currentPath} />
-        </motion.div>
-      )}
 
       {/* Main Content */}
       <main

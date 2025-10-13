@@ -5,7 +5,7 @@
  * Shows floating geometric shapes with various counts.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { FloatingElements } from "./FloatingElements";
 
 const meta = {

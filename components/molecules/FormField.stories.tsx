@@ -4,7 +4,7 @@
  * Complete form field with label, input, error, helper text.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { FormField } from './FormField';
 import { useState } from 'react';
 

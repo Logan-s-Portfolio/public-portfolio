@@ -4,7 +4,7 @@
  * Checkbox with label and description.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { CheckboxField } from './CheckboxField';
 import { useState } from 'react';
 

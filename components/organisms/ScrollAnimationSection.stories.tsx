@@ -5,7 +5,7 @@
  * Shows scroll-based animations: fadeIn, slideUp, parallax, stagger.
  */
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { ScrollAnimationSection } from "./ScrollAnimationSection";
 
 const meta = {

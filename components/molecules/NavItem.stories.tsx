@@ -4,7 +4,7 @@
  * Navigation links with active state indicators and optional icons.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { NavItem } from './NavItem';
 
 // Sample icons

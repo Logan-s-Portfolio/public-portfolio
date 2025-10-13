@@ -4,7 +4,7 @@
  * Text input fields using design system (neutral borders, terracotta focus, 300ms transitions).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Input } from './Input';
 import { Text } from './Text';
 

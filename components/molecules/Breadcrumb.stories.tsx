@@ -4,7 +4,7 @@
  * Navigation breadcrumbs for deep pages with ChevronRight separators.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Breadcrumb } from './Breadcrumb';
 
 const meta = {

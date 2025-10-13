@@ -6,7 +6,7 @@
  * 8-point grid aligned, pill-shaped with pastel backgrounds.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Badge } from './Badge';
 
 const meta = {

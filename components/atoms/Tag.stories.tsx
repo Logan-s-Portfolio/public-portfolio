@@ -5,7 +5,7 @@
  * 8-point grid spacing, variant-specific hover colors, 300ms transitions.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Tag } from './Tag';
 import { useState } from 'react';
 

@@ -4,7 +4,7 @@
  * Images with descriptive captions for case studies.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ImageWithCaption } from './ImageWithCaption';
 
 const meta = {

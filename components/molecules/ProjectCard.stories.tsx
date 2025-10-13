@@ -4,7 +4,7 @@
  * Compound component for showcasing portfolio projects with flexible layouts.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ProjectCard } from './ProjectCard';
 import { Tag } from '../atoms/Tag';
 

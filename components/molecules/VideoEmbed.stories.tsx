@@ -4,7 +4,7 @@
  * Embedded videos for case studies and demos.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { VideoEmbed } from './VideoEmbed';
 
 const meta = {

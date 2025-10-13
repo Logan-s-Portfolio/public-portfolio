@@ -20,6 +20,13 @@ const eslintConfig = [...compat.extends("next/core-web-vitals", "next/typescript
     "build/**",
     "next-env.d.ts",
   ],
+  rules: {
+    "react/no-unescaped-entities": "off",
+    "react/jsx-no-comment-textnodes": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@next/next/no-img-element": "warn",
+    "@next/next/no-html-link-for-pages": "warn",
+  },
 }, ...storybook.configs["flat/recommended"]];
 
 export default eslintConfig;

@@ -4,7 +4,7 @@
  * Body copy using design system typography (Inter, design system line heights 1.5/1.6/1.428).
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Text } from './Text';
 import { Link } from './Link';
 

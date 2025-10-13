@@ -4,7 +4,7 @@
  * Linear progress indicator with determinate and indeterminate states.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ProgressBar } from './ProgressBar';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';

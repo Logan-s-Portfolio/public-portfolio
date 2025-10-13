@@ -117,7 +117,7 @@ FormField.Label = function FormFieldLabel({
 FormField.Label.displayName = "FormField.Label";
 
 // Input sub-component
-interface FormFieldInputProps extends Omit<InputProps, 'id' | 'error' | 'aria-invalid' | 'aria-describedby'> {}
+type FormFieldInputProps = Omit<InputProps, 'id' | 'error' | 'aria-invalid' | 'aria-describedby'>;
 
 FormField.Input = function FormFieldInput({
   className,

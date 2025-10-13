@@ -5,7 +5,7 @@
  * Shows the design system's intentional typography hierarchy.
  */
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Heading } from './Heading';
 
 const meta = {
