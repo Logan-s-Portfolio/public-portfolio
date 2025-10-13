@@ -160,13 +160,16 @@ export const ViewportHero = ({
       setShowAbout(true);
     }, 800);
 
-    // About fade takes 1.2s, so wait 800ms + 1200ms = 2000ms total
-    // Add 300ms buffer to ensure 100% visibility
-    // ONLY THEN unlock scroll and mark as fully visible
+    // About fade takes 1s, wait 800ms + 1000ms = 1800ms total
+    // Unlock scroll and mark as fully visible
     const aboutCompleteTimer = setTimeout(() => {
       setIsAboutFullyVisible(true);
       document.body.style.overflow = ''; // Unlock scroll NOW
-    }, 2300);
+      // Trigger nav/cards immediately after About is visible
+      setTimeout(() => {
+        onIntroComplete?.();
+      }, 500);
+    }, 1800);
 
     return () => {
       clearTimeout(aboutTimer);
@@ -174,20 +177,6 @@ export const ViewportHero = ({
     };
   }, [isTypingComplete, shouldReduceMotion]);
 
-  // Trigger nav/cards when user scrolls after About is visible
-  useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
-      // Only allow scroll trigger AFTER About is fully visible
-      // Don't fade out About - just trigger nav/cards to overlay
-      if (latest > 150 && !hasScrolledAway && isAboutFullyVisible) {
-        setHasScrolledAway(true);
-        // Trigger nav slide in and cards appearance ON TOP of About
-        onIntroComplete?.();
-      }
-    });
-
-    return () => unsubscribe();
-  }, [scrollY, hasScrolledAway, isAboutFullyVisible, onIntroComplete]);
 
   // Get the visible text based on character count
   const visibleText = fullText.substring(0, visibleCharCount);
