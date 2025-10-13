@@ -50,12 +50,13 @@ export const Divider = ({
 
   // For vertical dividers or dividers without labels
   if (!label) {
+    const ariaOrientation = !isHorizontal ? orientation : undefined;
     return (
       <Component
         className={cn(dividerVariants({ orientation, variant }), className)}
         role={!isHorizontal ? "separator" : undefined}
-        aria-orientation={!isHorizontal ? orientation : undefined}
-        {...props}
+        aria-orientation={ariaOrientation}
+        {...props as any}
       />
     );
   }
