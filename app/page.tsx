@@ -166,14 +166,22 @@ export default function HomePage() {
           onIntroComplete={() => setIsIntroComplete(true)}
           isFramed={isIntroComplete}
         />
-      </div>
 
-      {/* Projects Grid - scrollable section after hero */}
-      <ProjectsGrid
-        projects={projects}
-        isVisible={isIntroComplete}
-        isFramed={isIntroComplete}
-      />
+        {/* Projects Grid - overlays on top of hero */}
+        <div
+          className="absolute inset-0"
+          style={{
+            paddingLeft: isIntroComplete ? "256px" : 0,
+            transition: "padding 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
+          }}
+        >
+          <ProjectsGrid
+            projects={projects}
+            isVisible={isIntroComplete}
+            isFramed={isIntroComplete}
+          />
+        </div>
+      </div>
 
     </div>
   );

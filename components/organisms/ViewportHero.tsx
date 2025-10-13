@@ -174,24 +174,20 @@ export const ViewportHero = ({
     };
   }, [isTypingComplete, shouldReduceMotion]);
 
-  // Fade out About section when user scrolls down, trigger nav/cards
+  // Trigger nav/cards when user scrolls after About is visible
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
       // Only allow scroll trigger AFTER About is fully visible
-      if (latest > 150 && showAbout && !hasScrolledAway && isAboutFullyVisible) {
+      // Don't fade out About - just trigger nav/cards to overlay
+      if (latest > 150 && !hasScrolledAway && isAboutFullyVisible) {
         setHasScrolledAway(true);
-        setShowAbout(false);
-        // Trigger nav slide in and cards appearance when user scrolls past About
+        // Trigger nav slide in and cards appearance ON TOP of About
         onIntroComplete?.();
-      }
-      // If user scrolls back up near the top, fade about back in
-      else if (latest < 80 && !showAbout && hasScrolledAway && isTypingComplete) {
-        setShowAbout(true);
       }
     });
 
     return () => unsubscribe();
-  }, [scrollY, showAbout, hasScrolledAway, isTypingComplete, isAboutFullyVisible, onIntroComplete]);
+  }, [scrollY, hasScrolledAway, isAboutFullyVisible, onIntroComplete]);
 
   // Get the visible text based on character count
   const visibleText = fullText.substring(0, visibleCharCount);
@@ -201,7 +197,7 @@ export const ViewportHero = ({
       id="viewport-hero"
       ref={containerRef}
       animate={{
-        minHeight: isAboutFullyVisible ? "60vh" : "100vh",
+        minHeight: "100vh",
         width: isFramed ? "calc(100vw - 256px)" : "100vw",
       }}
       transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
