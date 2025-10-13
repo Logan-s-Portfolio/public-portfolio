@@ -168,13 +168,7 @@ export default function HomePage() {
         />
 
         {/* Projects Grid - overlays on top of hero */}
-        <div
-          className="absolute inset-0"
-          style={{
-            paddingLeft: isIntroComplete ? "256px" : 0,
-            transition: "padding 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
-          }}
-        >
+        <div className="absolute inset-0">
           <ProjectsGrid
             projects={projects}
             isVisible={isIntroComplete}

@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   compress: true,
+  webpack: (config) => {
+    // Exclude Storybook files from the build
+    config.module.rules.push({
+      test: /\.stories\.(ts|tsx|js|jsx)$/,
+      use: 'null-loader',
+    });
+    return config;
+  },
 };
 
 export default nextConfig;

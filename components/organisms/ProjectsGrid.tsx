@@ -53,7 +53,13 @@ export const ProjectsGrid = ({
         className
       )}
     >
-      <div className="w-full max-w-6xl">
+      <div
+        className="w-full max-w-6xl"
+        style={{
+          marginLeft: isFramed ? "256px" : 0,
+          transition: "margin 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
+        }}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.id} layout="grid">
