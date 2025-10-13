@@ -79,6 +79,7 @@ export const ViewportHero = ({
   const [visibleCharCount, setVisibleCharCount] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [isAboutFullyVisible, setIsAboutFullyVisible] = useState(false);
 
   // Detect scroll to fade out About section when user scrolls toward cards
   const { scrollY } = useScroll();
@@ -143,31 +144,41 @@ export const ViewportHero = ({
   useEffect(() => {
     if (!isTypingComplete) return;
 
-    // Unlock scroll immediately
-    document.body.style.overflow = '';
+    // Keep scroll locked! Don't unlock yet - wait for About to fully fade in
 
     if (shouldReduceMotion) {
       // Show about immediately if reduced motion
       setShowAbout(true);
-      // Don't trigger intro complete automatically - wait for scroll
+      setIsAboutFullyVisible(true);
+      // Unlock scroll immediately for reduced motion
+      document.body.style.overflow = '';
       return;
     }
 
-    // Wait 500ms, then fade in about content
+    // Wait 800ms, then fade in about content
     const aboutTimer = setTimeout(() => {
       setShowAbout(true);
-    }, 500);
+    }, 800);
+
+    // About fade takes 1.2s, so wait 800ms + 1200ms = 2000ms total
+    // Add 300ms buffer to ensure 100% visibility
+    // ONLY THEN unlock scroll and mark as fully visible
+    const aboutCompleteTimer = setTimeout(() => {
+      setIsAboutFullyVisible(true);
+      document.body.style.overflow = ''; // Unlock scroll NOW
+    }, 2300);
 
     return () => {
       clearTimeout(aboutTimer);
+      clearTimeout(aboutCompleteTimer);
     };
   }, [isTypingComplete, shouldReduceMotion]);
 
   // Fade out About section when user scrolls down, trigger nav/cards
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
-      // If user has scrolled down past 200px, fade out about and trigger intro complete
-      if (latest > 200 && showAbout && !hasScrolledAway) {
+      // Only allow scroll trigger AFTER About is fully visible
+      if (latest > 200 && showAbout && !hasScrolledAway && isAboutFullyVisible) {
         setHasScrolledAway(true);
         setShowAbout(false);
         // Trigger nav slide in and cards appearance when user scrolls past About
@@ -180,7 +191,7 @@ export const ViewportHero = ({
     });
 
     return () => unsubscribe();
-  }, [scrollY, showAbout, hasScrolledAway, isTypingComplete, onIntroComplete]);
+  }, [scrollY, showAbout, hasScrolledAway, isTypingComplete, isAboutFullyVisible, onIntroComplete]);
 
   // Get the visible text based on character count
   const visibleText = fullText.substring(0, visibleCharCount);
