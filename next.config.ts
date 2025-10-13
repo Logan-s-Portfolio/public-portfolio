@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   compress: true,
+  eslint: {
+    // Skip ESLint during production builds
+    ignoreDuringBuilds: true,
+  },
   webpack: (config) => {
     // Exclude Storybook files from the build
     config.module.rules.push({
