@@ -219,10 +219,11 @@ export const ViewportHero = ({
     };
   }, [isFramed, isAboutTransitionComplete, scrollYProgress, shouldReduceMotion]);
 
-  // Call callback when about transition completes
+  // Call callback and unlock scroll when about transition completes
   useEffect(() => {
     if (isAboutTransitionComplete) {
       onAboutTransitionComplete?.();
+      document.body.style.overflow = "";
     }
   }, [isAboutTransitionComplete, onAboutTransitionComplete]);
 
@@ -275,10 +276,10 @@ export const ViewportHero = ({
       id="viewport-hero"
       ref={containerRef}
       animate={{
-        minHeight: isFramed ? "calc(100vh - 64px)" : "100vh",
+        minHeight: isAboutTransitionComplete ? "50vh" : (isFramed ? "calc(100vh - 64px)" : "100vh"),
         width: isFramed ? "calc(100vw - 256px)" : "100vw",
       }}
-      transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
       className={cn(
         "flex flex-col overflow-hidden",
         className
