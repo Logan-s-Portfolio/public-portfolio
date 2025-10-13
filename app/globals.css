@@ -1,26 +1,354 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   Design System Color Tokens
+   Light mode defaults, dark mode via .dark class (next-themes)
+   ============================================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Mode Semantic Tokens */
+  --color-primary: #B85032;
+  --color-primary-hover: #9A3F25;
+  --color-primary-foreground: #FFFFFF;
+
+  --color-accent: #7C9473;
+  --color-accent-foreground: #FFFFFF;
+
+  --color-background: #FAF7F5;
+  --color-background-elevated: #FFFFFF;
+
+  --color-foreground: #2E2D2A;
+  --color-muted: #F5F2EE;
+  --color-muted-foreground: #71706A;
+
+  --color-border: #D4D3CF;
+
+  --color-link: #9A3F25;
+  --color-heading-accent: #D4663A;
+
+  --color-success: #5E7157;
+  --color-warning: #D4A574;
+  --color-error: #A84032;
+
+  /* Shorthand aliases for common usage */
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+
+  /* Typography Tokens */
+  /* Font sizes (8-point grid aligned) */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.25rem;     /* 20px */
+  --font-size-xl: 1.5rem;      /* 24px */
+  --font-size-2xl: 2rem;       /* 32px */
+  --font-size-3xl: 2.5rem;     /* 40px */
+  --font-size-4xl: 3rem;       /* 48px */
+  --font-size-5xl: 4rem;       /* 64px */
+  --font-size-6xl: 5rem;       /* 80px */
+
+  /* Line heights (4px grid aligned, WCAG compliant) */
+  --line-height-xs: 1.5;       /* 18px */
+  --line-height-sm: 1.428;     /* 20px */
+  --line-height-base: 1.5;     /* 24px */
+  --line-height-lg: 1.6;       /* 32px */
+  --line-height-xl: 1.333;     /* 32px */
+  --line-height-2xl: 1.25;     /* 40px */
+  --line-height-3xl: 1.2;      /* 48px */
+  --line-height-4xl: 1.167;    /* 56px */
+  --line-height-5xl: 1.125;    /* 72px */
+  --line-height-6xl: 1.1;      /* 88px */
+
+  /* Font weights (4-weight system) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter spacing (optical adjustment) */
+  --letter-spacing-tighter: -0.02em;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.01em;
+  --letter-spacing-wider: 0.05em;
+
+  /* Spacing Tokens (8-point grid) */
+  --space-0: 0px;
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+  --space-4: 1rem;       /* 16px */
+  --space-5: 1.25rem;    /* 20px */
+  --space-6: 1.5rem;     /* 24px */
+  --space-8: 2rem;       /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
 }
+
+.dark {
+  /* Dark Mode Semantic Tokens */
+  --color-primary: #F4C5B3;
+  --color-primary-hover: #EEA88C;
+  --color-primary-foreground: #1F1F1F;
+
+  --color-accent: #B5C5A1;
+  --color-accent-foreground: #1F1F1F;
+
+  --color-background: #1F1F1F;
+  --color-background-elevated: #2E2D2A;
+
+  --color-foreground: #FAF7F5;
+  --color-muted: #454440;
+  --color-muted-foreground: #B8B7B1;
+
+  --color-border: #5C5B57;
+
+  --color-link: #EEA88C;
+  --color-heading-accent: #F4C5B3;
+
+  --color-success: #B5C5A1;
+  --color-warning: #E8C299;
+  --color-error: #E08A7F;
+
+  /* Shorthand aliases for common usage */
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+}
+
+/* ============================================================================
+   Tailwind CSS v4 Theme Configuration
+   ============================================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Breakpoint customizations */
+  --breakpoint-2xl: 1440px;  /* Custom 2xl (not Tailwind's default 1536px) */
+
+  /* Container max-widths */
+  --container-prose: 672px;   /* Blog/article content (65-75 chars per line) */
+  --container-narrow: 768px;  /* Forms, focused content */
+  --container-wide: 1440px;   /* Default max container */
+
+  /* Color mappings for Tailwind utilities */
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-foreground: var(--color-primary-foreground);
+
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+
+  --color-background: var(--color-background);
+  --color-background-elevated: var(--color-background-elevated);
+
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+
+  --color-border: var(--color-border);
+
+  --color-link: var(--color-link);
+  --color-heading-accent: var(--color-heading-accent);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+
+  /* Primitive Color Scales - Terracotta */
+  --color-terracotta-50: #FDF5F3;
+  --color-terracotta-100: #FADCD0;
+  --color-terracotta-200: #F4C5B3;
+  --color-terracotta-300: #EEA88C;
+  --color-terracotta-400: #E08161;
+  --color-terracotta-500: #D4663A;
+  --color-terracotta-600: #B85032;
+  --color-terracotta-700: #9A3F25;
+  --color-terracotta-800: #7D311D;
+  --color-terracotta-900: #5C2316;
+  --color-terracotta-950: #3D1710;
+
+  /* Primitive Color Scales - Neutral */
+  --color-neutral-50: #FAF7F5;
+  --color-neutral-100: #F5F2EE;
+  --color-neutral-200: #EAEAE7;
+  --color-neutral-300: #D4D3CF;
+  --color-neutral-400: #B8B7B1;
+  --color-neutral-500: #92918B;
+  --color-neutral-600: #71706A;
+  --color-neutral-700: #5C5B57;
+  --color-neutral-800: #454440;
+  --color-neutral-900: #2E2D2A;
+  --color-neutral-950: #1F1F1F;
+
+  /* Primitive Color Scales - Sage */
+  --color-sage-50: #F6F8F4;
+  --color-sage-100: #EAEFE4;
+  --color-sage-200: #D5DEC9;
+  --color-sage-300: #B5C5A1;
+  --color-sage-400: #93A97C;
+  --color-sage-500: #7C9473;
+  --color-sage-600: #5E7157;
+  --color-sage-700: #52614D;
+  --color-sage-800: #3F493B;
+  --color-sage-900: #2D342B;
+  --color-sage-950: #1A1F18;
+
+  /* Font families */
+  --font-fraunces: var(--font-fraunces);
+  --font-inter: var(--font-inter);
+  --font-jetbrains-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-inter);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* Typography scale mappings */
+  --font-size-xs: var(--font-size-xs);
+  --font-size-sm: var(--font-size-sm);
+  --font-size-base: var(--font-size-base);
+  --font-size-lg: var(--font-size-lg);
+  --font-size-xl: var(--font-size-xl);
+  --font-size-2xl: var(--font-size-2xl);
+  --font-size-3xl: var(--font-size-3xl);
+  --font-size-4xl: var(--font-size-4xl);
+  --font-size-5xl: var(--font-size-5xl);
+  --font-size-6xl: var(--font-size-6xl);
+
+  /* Spacing scale (8-point grid) */
+  --spacing-0: var(--space-0);
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+  --spacing-20: var(--space-20);
+  --spacing-24: var(--space-24);
+  --spacing-32: var(--space-32);
+
+  /* Line height mappings */
+  --line-height-xs: var(--line-height-xs);
+  --line-height-sm: var(--line-height-sm);
+  --line-height-base: var(--line-height-base);
+  --line-height-lg: var(--line-height-lg);
+  --line-height-xl: var(--line-height-xl);
+  --line-height-2xl: var(--line-height-2xl);
+  --line-height-3xl: var(--line-height-3xl);
+  --line-height-4xl: var(--line-height-4xl);
+  --line-height-5xl: var(--line-height-5xl);
+  --line-height-6xl: var(--line-height-6xl);
+
+  /* Font weight mappings */
+  --font-weight-regular: var(--font-weight-regular);
+  --font-weight-medium: var(--font-weight-medium);
+  --font-weight-semibold: var(--font-weight-semibold);
+  --font-weight-bold: var(--font-weight-bold);
+
+  /* Letter spacing mappings */
+  --letter-spacing-tighter: var(--letter-spacing-tighter);
+  --letter-spacing-tight: var(--letter-spacing-tight);
+  --letter-spacing-normal: var(--letter-spacing-normal);
+  --letter-spacing-wide: var(--letter-spacing-wide);
+  --letter-spacing-wider: var(--letter-spacing-wider);
+
+  /* Shadow mappings (Material Design 3 inspired) */
+  --shadow-sm: 0 1px 2px 0 rgba(46, 45, 42, 0.05);
+  --shadow-md: 0 2px 4px -1px rgba(46, 45, 42, 0.06), 0 4px 6px -1px rgba(46, 45, 42, 0.10);
+  --shadow-lg: 0 4px 6px -2px rgba(46, 45, 42, 0.05), 0 10px 15px -3px rgba(46, 45, 42, 0.10);
+  --shadow-xl: 0 10px 25px -5px rgba(46, 45, 42, 0.10), 0 20px 40px -10px rgba(46, 45, 42, 0.15);
+  --shadow-2xl: 0 25px 50px -12px rgba(46, 45, 42, 0.25);
+
+  /* Border radius mappings (8-point grid aligned) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transition duration mappings */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  /* Transition easing mappings */
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Animation mappings */
+  --animate-progress-indeterminate: progress-indeterminate 1.5s ease-in-out infinite;
+
+  /* Z-index mappings (1000-unit scale) */
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1010;
+  --z-fixed: 1020;
+  --z-overlay: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+  --z-toast: 1070;
+
+  /* Opacity mappings (accessibility-compliant) */
+  --opacity-full: 1;
+  --opacity-high: 0.9;
+  --opacity-medium: 0.75;
+  --opacity-low: 0.6;
+  --opacity-disabled: 0.5;
+  --opacity-subtle: 0.25;
+  --opacity-faint: 0.1;
+  --opacity-invisible: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================================================
+   Base Styles
+   ============================================================================ */
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Hide scrollbar for horizontal scroll sections */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* ============================================================================
+   Custom Animations
+   ============================================================================ */
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%) scaleX(0.3);
+  }
+  50% {
+    transform: translateX(0%) scaleX(0.5);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.3);
+  }
 }

@@ -1,103 +1,189 @@
-import Image from "next/image";
+/**
+ * Home Page (/)
+ *
+ * Documentation hub landing page with hero and quick links to all sections.
+ * Uses DocsLayout for consistent navigation experience.
+ */
 
-export default function Home() {
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ViewportHero } from "@/components/organisms/ViewportHero";
+import { SideNav } from "@/components/organisms/SideNav";
+import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
+import type { ProjectData } from "@/components/organisms/ProjectsGrid";
+
+const navigationItems = [
+  {
+    id: "home",
+    label: "Home",
+    href: "/",
+  },
+  {
+    id: "about",
+    label: "About",
+    href: "/about",
+  },
+  {
+    id: "resume",
+    label: "Resume",
+    href: "/resume",
+  },
+  {
+    id: "design-systems",
+    label: "Design Systems",
+    href: "/skills/design-systems",
+  },
+  {
+    id: "claude-code",
+    label: "Claude Code",
+    href: "/skills/claude-code",
+  },
+  {
+    id: "flutterflow",
+    label: "Flutterflow",
+    href: "/skills/flutterflow",
+  },
+  {
+    id: "duro-case-study",
+    label: "Duro Case Study",
+    href: "/case-studies/duro",
+  },
+];
+
+export default function HomePage() {
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [isAboutComplete, setIsAboutComplete] = useState(false);
+
+  const bioParagraphs = [
+    "I'm a product designer and entrepreneur based in Austin, TX. With over 10 years of experience, I specialize in creating intuitive, beautiful interfaces that users love and businesses need.",
+    "My approach combines deep user research, rapid prototyping, and systematic thinking to deliver products that solve real problems. I'm passionate about design systems, accessibility, and building tools that empower teams.",
+    "When I'm not designing, you'll find me exploring Austin's coffee scene, contributing to open-source projects, or mentoring aspiring designers.",
+  ];
+
+  const projects: [ProjectData, ProjectData, ProjectData, ProjectData] = [
+    {
+      id: "design-systems",
+      title: "Building Design Systems from Scratch",
+      description: "See how I architect comprehensive design systems using atomic design principles. Every color, spacing value, and component is intentional—from foundational tokens to complex organisms, all documented in Storybook.",
+      badge: "Design Systems",
+      imageSrc: "/designsystemshot.png",
+      imageAlt: "Design System Preview",
+      tags: [
+        { label: "React", variant: "terracotta" },
+        { label: "TypeScript", variant: "sage" },
+        { label: "Storybook", variant: "terracotta" },
+        { label: "Tailwind CSS", variant: "sage" },
+      ],
+      href: "/skills/design-systems",
+      linkText: "View Complete System",
+    },
+    {
+      id: "claude-code",
+      title: "AI-Assisted Development with Claude Code",
+      description: "My architecture-first approach to AI-assisted development. Using Claude Code as an intelligent pair programmer, I build from types → data → state → UI, with rigorous testing at every layer.",
+      badge: "AI Development",
+      imageSrc: "/claudev3.png",
+      imageAlt: "Claude Code AI Development Preview",
+      tags: [
+        { label: "Claude Code", variant: "sage" },
+        { label: "Next.js", variant: "terracotta" },
+        { label: "TypeScript", variant: "sage" },
+        { label: "Test-Driven", variant: "terracotta" },
+      ],
+      href: "/skills/claude-code",
+      linkText: "View Development Process",
+    },
+    {
+      id: "duro-case-study",
+      title: "Duro: Event Management Platform",
+      description: "From concept to execution—designing a comprehensive event management platform with recurring events, real-time availability, and seamless booking workflows. See how I tackled complex scheduling logic with intuitive UX.",
+      badge: "Case Study",
+      imageSrc: "/duro-case-study.png",
+      imageAlt: "Duro Event Management Platform Preview",
+      tags: [
+        { label: "Product Design", variant: "terracotta" },
+        { label: "UX Research", variant: "sage" },
+        { label: "Event Management", variant: "terracotta" },
+        { label: "Scheduling", variant: "sage" },
+      ],
+      href: "/case-studies/duro",
+      linkText: "View Case Study",
+    },
+    {
+      id: "flutterflow",
+      title: "FlutterFlow: 10x Faster Mobile Apps",
+      description: "Production-ready mobile apps in weeks, not months. My database-first approach with Firebase, visual development in FlutterFlow, and AI-assisted custom Dart code delivers cross-platform apps at unprecedented speed.",
+      badge: "Mobile Development",
+      imageSrc: "/flutterflow.png",
+      imageAlt: "FlutterFlow Mobile Development Preview",
+      tags: [
+        { label: "FlutterFlow", variant: "sage" },
+        { label: "Firebase", variant: "terracotta" },
+        { label: "Dart", variant: "sage" },
+        { label: "Cross-Platform", variant: "terracotta" },
+      ],
+      href: "/skills/flutterflow",
+      linkText: "View Process",
+    },
+  ];
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-white via-white to-sage-50/30">
+      {/* Sidebar slides in from left - fixed positioned overlay */}
+      <motion.div
+        initial={{ x: -256 }}
+        animate={{ x: isTypingComplete ? 0 : -256 }}
+        transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+        className="fixed left-0 top-0 z-40 h-screen"
+      >
+        <SideNav items={navigationItems} currentPath="/" />
+      </motion.div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      {/* Hero - resizes when sidebar slides in */}
+      <div
+        className="relative"
+        style={{
+          paddingLeft: isTypingComplete ? "256px" : 0,
+          transition: "padding 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
+        }}
+      >
+        <div className="relative">
+          <ViewportHero
+            name="Logan Bell"
+            greeting="Hi, I'm"
+            typingPhrases={[
+              "Product Designer",
+              "Entrepreneur",
+              "Crafting memorable user experiences",
+            ]}
+            photoUrl="/logan-bell.jpg"
+            aboutPhotoUrl="/BrittanyGilbertPhotography-2840.JPG.jpeg"
+            photoAlt="Logan Bell - Product Designer & Entrepreneur"
+            location="Austin, TX"
+            bioParagraphs={bioParagraphs}
+            ctaLabel="Read Full Story"
+            ctaHref="/about"
+            onTypingComplete={() => setIsTypingComplete(true)}
+            onAboutTransitionComplete={() => setIsAboutComplete(true)}
+            isFramed={isTypingComplete}
+          />
+
+          {/* Projects Grid - overlaid on top of hero viewport */}
+          <div className="absolute inset-0 pointer-events-none">
+            <ProjectsGrid
+              projects={projects}
+              isVisible={isAboutComplete}
+              isFramed={isTypingComplete}
+              onAnimationComplete={() => {
+                // Scroll is unlocked inside ProjectsGrid
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
     </div>
   );
 }
