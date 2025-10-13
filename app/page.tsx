@@ -149,40 +149,36 @@ export default function HomePage() {
           transition: "padding 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
         }}
       >
-        <div className="relative">
-          <ViewportHero
-            name="Logan Bell"
-            greeting="Hi, I'm"
-            typingPhrases={[
-              "Product Designer",
-              "Entrepreneur",
-              "Crafting memorable user experiences",
-            ]}
-            photoUrl="/logan-bell.jpg"
-            aboutPhotoUrl="/BrittanyGilbertPhotography-2840.JPG.jpeg"
-            photoAlt="Logan Bell - Product Designer & Entrepreneur"
-            location="Austin, TX"
-            bioParagraphs={bioParagraphs}
-            ctaLabel="Read Full Story"
-            ctaHref="/about"
-            onTypingComplete={() => setIsTypingComplete(true)}
-            onAboutTransitionComplete={() => setIsAboutComplete(true)}
-            isFramed={isTypingComplete}
-          />
-
-          {/* Projects Grid - overlaid on top of hero viewport */}
-          <div className="absolute inset-0 pointer-events-none">
-            <ProjectsGrid
-              projects={projects}
-              isVisible={isAboutComplete}
-              isFramed={isTypingComplete}
-              onAnimationComplete={() => {
-                // Scroll is unlocked inside ProjectsGrid
-              }}
-            />
-          </div>
-        </div>
+        <ViewportHero
+          name="Logan Bell"
+          greeting="Hi, I'm"
+          typingPhrases={[
+            "Product Designer",
+            "Entrepreneur",
+            "Crafting memorable user experiences",
+          ]}
+          photoUrl="/logan-bell.jpg"
+          aboutPhotoUrl="/BrittanyGilbertPhotography-2840.JPG.jpeg"
+          photoAlt="Logan Bell - Product Designer & Entrepreneur"
+          location="Austin, TX"
+          bioParagraphs={bioParagraphs}
+          ctaLabel="Read Full Story"
+          ctaHref="/about"
+          onTypingComplete={() => setIsTypingComplete(true)}
+          onAboutTransitionComplete={() => setIsAboutComplete(true)}
+          isFramed={isTypingComplete}
+        />
       </div>
+
+      {/* Projects Grid - scrollable section after hero */}
+      <ProjectsGrid
+        projects={projects}
+        isVisible={isAboutComplete}
+        isFramed={isTypingComplete}
+        onAnimationComplete={() => {
+          // Scroll is unlocked inside ProjectsGrid
+        }}
+      />
 
     </div>
   );
