@@ -175,9 +175,6 @@ export default function HomePage() {
         projects={projects}
         isVisible={isAboutComplete}
         isFramed={isTypingComplete}
-        onAnimationComplete={() => {
-          // Scroll is unlocked inside ProjectsGrid
-        }}
       />
 
     </div>
