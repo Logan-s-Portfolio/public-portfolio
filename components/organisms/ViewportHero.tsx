@@ -175,11 +175,11 @@ export const ViewportHero = ({
 
   // Trigger nav/cards when user scrolls after reading About
   useEffect(() => {
-    if (!isAboutFullyVisible) return;
+    if (!isAboutFullyVisible || hasScrolledAway) return;
 
     const unsubscribe = scrollY.on("change", (latest) => {
-      // When user scrolls after About is visible, trigger nav/cards overlay
-      if (latest > 100 && !hasScrolledAway) {
+      // When user scrolls ANY amount after About is visible, trigger nav/cards overlay immediately
+      if (latest > 5) {
         setHasScrolledAway(true);
         onIntroComplete?.();
       }

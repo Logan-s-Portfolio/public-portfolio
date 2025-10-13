@@ -32,7 +32,7 @@ const dividerVariants = cva(
 );
 
 export interface DividerProps
-  extends React.HTMLAttributes<HTMLHRElement>,
+  extends Omit<React.HTMLAttributes<HTMLElement>, 'aria-orientation'>,
     VariantProps<typeof dividerVariants> {
   /** Label text to display on divider */
   label?: string;
@@ -46,19 +46,26 @@ export const Divider = ({
   ...props
 }: DividerProps) => {
   const isHorizontal = orientation === "horizontal";
-  const Component = isHorizontal ? 'hr' : 'div';
 
   // For vertical dividers or dividers without labels
   if (!label) {
-    const ariaOrientation = !isHorizontal ? orientation : undefined;
-    return (
-      <Component
-        className={cn(dividerVariants({ orientation, variant }), className)}
-        role={!isHorizontal ? "separator" : undefined}
-        aria-orientation={ariaOrientation}
-        {...props as any}
-      />
-    );
+    if (isHorizontal) {
+      return (
+        <hr
+          className={cn(dividerVariants({ orientation, variant }), className)}
+          {...props}
+        />
+      );
+    } else {
+      return (
+        <div
+          className={cn(dividerVariants({ orientation, variant }), className)}
+          role="separator"
+          aria-orientation={orientation}
+          {...props}
+        />
+      );
+    }
   }
 
   // Horizontal divider with label

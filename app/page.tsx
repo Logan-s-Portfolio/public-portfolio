@@ -142,7 +142,7 @@ export default function HomePage() {
 
       {/* Hero - resizes when sidebar slides in */}
       <div
-        className="relative"
+        className="relative min-h-[150vh]"
         style={{
           paddingLeft: isIntroComplete ? "256px" : 0,
           transition: "padding 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
