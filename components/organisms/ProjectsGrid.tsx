@@ -48,7 +48,7 @@ export const ProjectsGrid = ({
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={cn(
-        "flex items-center justify-center px-4 md:px-6 lg:px-8 py-24 md:py-32",
+        "flex items-center justify-center px-4 md:px-6 lg:px-8 py-12 md:py-16",
         isVisible ? "" : "pointer-events-none",
         className
       )}

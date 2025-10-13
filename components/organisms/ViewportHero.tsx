@@ -178,14 +178,14 @@ export const ViewportHero = ({
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
       // Only allow scroll trigger AFTER About is fully visible
-      if (latest > 200 && showAbout && !hasScrolledAway && isAboutFullyVisible) {
+      if (latest > 150 && showAbout && !hasScrolledAway && isAboutFullyVisible) {
         setHasScrolledAway(true);
         setShowAbout(false);
         // Trigger nav slide in and cards appearance when user scrolls past About
         onIntroComplete?.();
       }
       // If user scrolls back up near the top, fade about back in
-      else if (latest < 100 && !showAbout && hasScrolledAway && isTypingComplete) {
+      else if (latest < 80 && !showAbout && hasScrolledAway && isTypingComplete) {
         setShowAbout(true);
       }
     });
@@ -201,7 +201,7 @@ export const ViewportHero = ({
       id="viewport-hero"
       ref={containerRef}
       animate={{
-        minHeight: "100vh",
+        minHeight: isAboutFullyVisible ? "60vh" : "100vh",
         width: isFramed ? "calc(100vw - 256px)" : "100vw",
       }}
       transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
