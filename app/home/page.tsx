@@ -11,9 +11,93 @@ import { Navbar } from "@/components/organisms/Navbar";
 import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
 import { Footer } from "@/components/organisms/Footer";
 import { Heading } from "@/components/atoms/Heading";
+import { ServiceOfferingsSection } from "@/components/organisms/ServiceOfferingsSection";
 import type { ProjectData } from "@/components/organisms/ProjectsGrid";
 
 export default function HomePage() {
+  const services = [
+    {
+      id: "ideation",
+      title: "Ideation & Prototyping",
+      tagline: "Transform ideas into testable prototypes",
+      description:
+        "Rapid prototyping and user testing to validate concepts before full development. I'll help you explore possibilities, identify risks, and build confidence in your direction.",
+      icon: "🎨",
+      deliverables: [
+        "Interactive Figma prototypes",
+        "User testing sessions & insights",
+        "Design system foundation",
+        "Technical feasibility assessment",
+      ],
+      timeline: "2-4 weeks",
+      accent: "terracotta" as const,
+    },
+    {
+      id: "redesign",
+      title: "Product Redesign",
+      tagline: "Refresh and modernize existing products",
+      description:
+        "Breathe new life into your product with modern UX patterns, improved accessibility, and systematic design. I'll audit your current state and deliver a clear path forward.",
+      icon: "🔄",
+      deliverables: [
+        "UX/UI audit report",
+        "Redesigned screens & flows",
+        "Migration roadmap",
+        "Component specifications",
+      ],
+      timeline: "4-8 weeks",
+      accent: "sage" as const,
+    },
+    {
+      id: "coaching",
+      title: "Team Coaching",
+      tagline: "Level up your design & development teams",
+      description:
+        "Hands-on coaching for teams adopting design systems, improving workflows, or building design culture. Available for 1:1 sessions, team workshops, or ongoing support.",
+      icon: "👥",
+      deliverables: [
+        "Custom workshop sessions",
+        "Process documentation",
+        "Design system training",
+        "Async support & reviews",
+      ],
+      timeline: "Ongoing",
+      accent: "neutral" as const,
+    },
+    {
+      id: "mvp",
+      title: "MVP Development",
+      tagline: "Ship fast, iterate faster",
+      description:
+        "Full-stack MVP development with Next.js, TypeScript, and modern tooling. Perfect for validating business ideas or launching internal tools quickly.",
+      icon: "🚀",
+      deliverables: [
+        "Production-ready codebase",
+        "Design system setup",
+        "Testing & CI/CD pipeline",
+        "Documentation & handoff",
+      ],
+      timeline: "6-12 weeks",
+      accent: "terracotta" as const,
+    },
+    {
+      id: "training",
+      title: "Tool Training",
+      tagline: "Master Figma, design systems, & more",
+      description:
+        "Structured training on Figma, design systems, Storybook, or frontend development. Available as live workshops, recorded sessions, or custom documentation.",
+      icon: "🛠️",
+      deliverables: [
+        "Live training sessions",
+        "Recorded walkthroughs",
+        "Custom documentation",
+        "Practice exercises",
+      ],
+      timeline: "1-3 weeks",
+      accent: "sage" as const,
+    },
+  ];
+
   const projects: [ProjectData, ProjectData, ProjectData, ProjectData] = [
     {
       id: "design-systems",
@@ -116,6 +200,9 @@ export default function HomePage() {
             </Link>
           </div>
         </section>
+
+        {/* Service Offerings Section */}
+        <ServiceOfferingsSection services={services} />
 
         {/* Projects Grid - reduced padding, container controls spacing */}
         <section className="px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
