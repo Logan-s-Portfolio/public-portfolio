@@ -81,7 +81,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
     <div className={cn("space-y-8", className)}>
       {/* Header */}
       <div className="text-center">
-        <Heading as="h2" variant="title" className="mb-4">
+        <Heading as="h2" variant="h2" className="mb-4">
           Exploded View: Hero Organism
         </Heading>
         <Text variant="lead" className="text-neutral-600 max-w-2xl mx-auto">
