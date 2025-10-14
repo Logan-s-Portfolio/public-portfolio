@@ -51,7 +51,7 @@ export const GridLayout: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">Next.js</Tag>
-            <Tag variant="sage" size="sm">Supabase</Tag>
+            <Tag variant="success" size="sm">Supabase</Tag>
             <Tag variant="default" size="sm">TypeScript</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Stats>
@@ -97,7 +97,7 @@ export const FeaturedLayout: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">React</Tag>
-            <Tag variant="sage" size="sm">Node.js</Tag>
+            <Tag variant="success" size="sm">Node.js</Tag>
             <Tag variant="terracotta" size="sm">PostgreSQL</Tag>
             <Tag variant="default" size="sm">Stripe</Tag>
           </ProjectCard.Tags>
@@ -142,7 +142,7 @@ export const HorizontalLayout: Story = {
             </ProjectCard.Description>
           </ProjectCard.Header>
           <ProjectCard.Tags>
-            <Tag variant="sage" size="sm">Vue.js</Tag>
+            <Tag variant="success" size="sm">Vue.js</Tag>
             <Tag variant="terracotta" size="sm">Firebase</Tag>
             <Tag variant="default" size="sm">Tailwind</Tag>
           </ProjectCard.Tags>
@@ -179,7 +179,7 @@ export const MinimalLayout: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">React</Tag>
-            <Tag variant="sage" size="sm">Storybook</Tag>
+            <Tag variant="success" size="sm">Storybook</Tag>
             <Tag variant="default" size="sm">Figma</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Footer>
@@ -218,7 +218,7 @@ export const GridOfCards: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">Next.js</Tag>
-            <Tag variant="sage" size="sm">AI</Tag>
+            <Tag variant="success" size="sm">AI</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Footer>
             <ProjectCard.Link href="#">View Project</ProjectCard.Link>
@@ -239,7 +239,7 @@ export const GridOfCards: Story = {
             </ProjectCard.Description>
           </ProjectCard.Header>
           <ProjectCard.Tags>
-            <Tag variant="sage" size="sm">React</Tag>
+            <Tag variant="success" size="sm">React</Tag>
             <Tag variant="default" size="sm">D3.js</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Footer>
@@ -262,7 +262,7 @@ export const GridOfCards: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">React Native</Tag>
-            <Tag variant="sage" size="sm">GraphQL</Tag>
+            <Tag variant="success" size="sm">GraphQL</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Footer>
             <ProjectCard.Link href="#">View Project</ProjectCard.Link>
@@ -302,9 +302,9 @@ export const WithAllFeatures: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">Next.js 14</Tag>
-            <Tag variant="sage" size="sm">PostgreSQL</Tag>
+            <Tag variant="success" size="sm">PostgreSQL</Tag>
             <Tag variant="terracotta" size="sm">Redis</Tag>
-            <Tag variant="sage" size="sm">Docker</Tag>
+            <Tag variant="success" size="sm">Docker</Tag>
             <Tag variant="default" size="sm">AWS</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Stats>
@@ -344,7 +344,7 @@ export const WithoutImage: Story = {
             </ProjectCard.Description>
           </ProjectCard.Header>
           <ProjectCard.Tags>
-            <Tag variant="sage" size="sm">Go</Tag>
+            <Tag variant="success" size="sm">Go</Tag>
             <Tag variant="default" size="sm">CLI</Tag>
             <Tag variant="terracotta" size="sm">Open Source</Tag>
           </ProjectCard.Tags>
@@ -386,7 +386,7 @@ export const HorizontalList: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">UX Design</Tag>
-            <Tag variant="sage" size="sm">A/B Testing</Tag>
+            <Tag variant="success" size="sm">A/B Testing</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Footer>
             <ProjectCard.Link href="#">Read Case Study</ProjectCard.Link>
@@ -407,7 +407,7 @@ export const HorizontalList: Story = {
             </ProjectCard.Description>
           </ProjectCard.Header>
           <ProjectCard.Tags>
-            <Tag variant="sage" size="sm">React Native</Tag>
+            <Tag variant="success" size="sm">React Native</Tag>
             <Tag variant="terracotta" size="sm">Security</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Footer>
@@ -478,7 +478,7 @@ export const MinimalSidebar: Story = {
             </ProjectCard.Header>
             <ProjectCard.Tags>
               <Tag variant="terracotta" size="sm">React</Tag>
-              <Tag variant="sage" size="sm">Storybook</Tag>
+              <Tag variant="success" size="sm">Storybook</Tag>
             </ProjectCard.Tags>
             <ProjectCard.Footer>
               <ProjectCard.Link href="#">View Project</ProjectCard.Link>
@@ -495,7 +495,7 @@ export const MinimalSidebar: Story = {
               </ProjectCard.Description>
             </ProjectCard.Header>
             <ProjectCard.Tags>
-              <Tag variant="sage" size="sm">React Native</Tag>
+              <Tag variant="success" size="sm">React Native</Tag>
             </ProjectCard.Tags>
             <ProjectCard.Footer>
               <ProjectCard.Link href="#">View Project</ProjectCard.Link>
@@ -554,7 +554,7 @@ export const Interactive: Story = {
           </ProjectCard.Header>
           <ProjectCard.Tags>
             <Tag variant="terracotta" size="sm">React</Tag>
-            <Tag variant="sage" size="sm">TypeScript</Tag>
+            <Tag variant="success" size="sm">TypeScript</Tag>
             <Tag variant="default" size="sm">Tailwind</Tag>
           </ProjectCard.Tags>
           <ProjectCard.Stats>

@@ -74,7 +74,7 @@ export const SkillLayout = ({
         >
           {name}
         </Heading>
-        <Badge variant="sage" size="sm" className="mb-4">
+        <Badge variant="success" size="sm" className="mb-4">
           {years}
         </Badge>
         <Text variant="small" className="text-neutral-600">

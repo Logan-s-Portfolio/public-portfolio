@@ -347,7 +347,7 @@ export const TokenPlayground = ({
             }}
             transition={{
               duration:
-                transitionTokens.find((t) => t.name === selectedTransition)?.duration / 1000 || 0.3,
+                (transitionTokens.find((t) => t.name === selectedTransition)?.duration || 300) / 1000,
               ease: [0.33, 1, 0.68, 1] as const,
             }}
           >

@@ -228,7 +228,7 @@ export const RemovableWithVariants: Story = {
               {skills.map(tag => (
                 <Tag
                   key={tag}
-                  variant="sage"
+                  variant="success"
                   removable
                   onRemove={() => setSkills(skills.filter(t => t !== tag))}
                 >
