@@ -94,52 +94,54 @@ interface FormFieldLabelProps extends Omit<React.LabelHTMLAttributes<HTMLLabelEl
   required?: boolean;
 }
 
-FormField.Label = function FormFieldLabel({
-  children,
-  required,
-  className,
-  ...props
-}: FormFieldLabelProps) {
-  const { fieldId } = useFormFieldContext();
+FormField.Label = Object.assign(
+  function FormFieldLabel({
+    children,
+    required,
+    className,
+    ...props
+  }: FormFieldLabelProps) {
+    const { fieldId } = useFormFieldContext();
 
-  return (
-    <Label
-      htmlFor={fieldId}
-      required={required}
-      className={className}
-      {...props}
-    >
-      {children}
-    </Label>
-  );
-};
-
-FormField.Label.displayName = "FormField.Label";
+    return (
+      <Label
+        htmlFor={fieldId}
+        required={required}
+        className={className}
+        {...props}
+      >
+        {children}
+      </Label>
+    );
+  },
+  { displayName: "FormField.Label" }
+);
 
 // Input sub-component
 type FormFieldInputProps = Omit<InputProps, 'id' | 'error' | 'aria-invalid' | 'aria-describedby'>;
 
-FormField.Input = function FormFieldInput({
-  className,
-  ...props
-}: FormFieldInputProps) {
-  const { fieldId, error, helperId, errorId } = useFormFieldContext();
+FormField.Input = Object.assign(
+  function FormFieldInput({
+    className,
+    ...props
+  }: FormFieldInputProps) {
+    const { fieldId, error, helperId, errorId } = useFormFieldContext();
 
-  const ariaDescribedBy = error ? errorId : helperId;
+    const ariaDescribedBy = error ? errorId : helperId;
 
-  return (
-    <Input
-      id={fieldId}
-      error={!!error}
-      aria-invalid={!!error}
-      aria-describedby={ariaDescribedBy}
-      className={className}
-      {...props}
-    />
-  );
-};
-
-FormField.Input.displayName = "FormField.Input";
+    return (
+      <Input
+        id={fieldId}
+        error={!!error}
+        aria-invalid={!!error}
+        aria-describedby={ariaDescribedBy}
+        className={className}
+        {...props}
+      />
+    );
+  },
+  { displayName: "FormField.Input" }
+);
 
 // Helper text sub-component
 interface FormFieldHelperProps {
@@ -149,26 +151,27 @@ interface FormFieldHelperProps {
   className?: string;
 }
 
-FormField.Helper = function FormFieldHelper({
-  children,
-  className,
-}: FormFieldHelperProps) {
-  const { helperId, error } = useFormFieldContext();
+FormField.Helper = Object.assign(
+  function FormFieldHelper({
+    children,
+    className,
+  }: FormFieldHelperProps) {
+    const { helperId, error } = useFormFieldContext();
 
-  // Hide helper when error is shown
-  if (error) return null;
+    // Hide helper when error is shown
+    if (error) return null;
 
-  return (
-    <p
-      id={helperId}
-      className={cn("font-inter text-sm text-neutral-600", className)}
-    >
-      {children}
-    </p>
-  );
-};
-
-FormField.Helper.displayName = "FormField.Helper";
+    return (
+      <p
+        id={helperId}
+        className={cn("font-inter text-sm text-neutral-600", className)}
+      >
+        {children}
+      </p>
+    );
+  },
+  { displayName: "FormField.Helper" }
+);
 
 // Error message sub-component
 interface FormFieldErrorProps {
@@ -176,26 +179,27 @@ interface FormFieldErrorProps {
   className?: string;
 }
 
-FormField.Error = function FormFieldError({
-  className,
-}: FormFieldErrorProps) {
-  const { errorId, error } = useFormFieldContext();
+FormField.Error = Object.assign(
+  function FormFieldError({
+    className,
+  }: FormFieldErrorProps) {
+    const { errorId, error } = useFormFieldContext();
 
-  // Only show when error exists
-  if (!error) return null;
+    // Only show when error exists
+    if (!error) return null;
 
-  return (
-    <div
-      id={errorId}
-      role="alert"
-      className={cn("flex items-center gap-2 font-inter text-sm text-terracotta-700", className)}
-    >
-      <ErrorIcon className="w-4 h-4 flex-shrink-0" />
-      <span>{error}</span>
-    </div>
-  );
-};
-
-FormField.Error.displayName = "FormField.Error";
+    return (
+      <div
+        id={errorId}
+        role="alert"
+        className={cn("flex items-center gap-2 font-inter text-sm text-terracotta-700", className)}
+      >
+        <ErrorIcon className="w-4 h-4 flex-shrink-0" />
+        <span>{error}</span>
+      </div>
+    );
+  },
+  { displayName: "FormField.Error" }
+);
 
 FormField.displayName = "FormField";
