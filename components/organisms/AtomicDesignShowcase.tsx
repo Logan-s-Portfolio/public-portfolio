@@ -180,7 +180,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               "cursor-pointer transition-all",
               viewMode !== "complete" && "ring-2 ring-terracotta-500 ring-offset-2 rounded-full"
             )}>
-              <Badge variant="terracotta" size="sm">React</Badge>
+              <Badge variant="default" size="sm">React</Badge>
             </div>
             {viewMode === "atoms" && (
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-terracotta-600 text-white px-2 py-1 rounded text-xs font-semibold">
