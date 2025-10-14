@@ -11,7 +11,7 @@
 export { colors } from './colors';
 export { typography } from './typography';
 export { spacing } from './spacing';
-export { layout } from './layout';
+export { layoutTokens as layout } from './layout';
 export { shadows } from './shadows';
 export { radii } from './radii';
 export { transitions } from './transitions';

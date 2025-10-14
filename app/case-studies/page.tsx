@@ -16,10 +16,6 @@ export const metadata: Metadata = {
 };
 
 export default function CaseStudiesHubPage() {
-  const breadcrumbs = [
-    { label: "Case Studies", href: "/case-studies" },
-  ];
-
   const projects = [
     {
       id: "austin-power-alert",
@@ -44,19 +40,10 @@ export default function CaseStudiesHubPage() {
   ];
 
   return (
-    <DocsLayout
-      currentPath="/case-studies"
-      breadcrumbs={breadcrumbs}
-      pageTitle="Case Studies"
-    >
+    <DocsLayout currentPath="/case-studies" pageTitle="Case Studies">
       <section className="mb-8">
         <Text variant="lead" className="mb-4">
           Projects that demonstrate systems thinking and craft
-        </Text>
-        <Text variant="body" className="mb-4">
-          Each case study demonstrates not just what I built, but how and why. I
-          focus on process, decision-making, and the systematic thinking behind
-          every project.
         </Text>
       </section>
 

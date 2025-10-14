@@ -8,6 +8,8 @@
  * Accessibility: Semantic list structure with keyboard navigation
  */
 
+"use client";
+
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import { Button } from "@/components/atoms/Button";
 import { Badge } from "@/components/atoms/Badge";

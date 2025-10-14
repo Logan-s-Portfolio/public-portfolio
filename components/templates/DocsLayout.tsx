@@ -14,7 +14,7 @@ import { Navbar } from "@/components/organisms/Navbar";
 import { Breadcrumb } from "@/components/molecules/Breadcrumb";
 import { Heading } from "@/components/atoms/Heading";
 
-export interface Breadcrumb {
+export interface BreadcrumbItem {
   label: string;
   href: string;
 }
@@ -22,7 +22,7 @@ export interface Breadcrumb {
 export interface DocsLayoutProps {
   children: ReactNode;
   currentPath: string;
-  breadcrumbs?: Breadcrumb[];
+  breadcrumbs?: BreadcrumbItem[];
   pageTitle?: string;
   /** Whether to show navbar (passed to PageLayout) */
   showNavbar?: boolean;
