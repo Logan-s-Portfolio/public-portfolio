@@ -111,10 +111,10 @@ export default function ContactPage() {
                   For detailed inquiries or project proposals
                 </Text>
                 <a
-                  href="mailto:hello@example.com"
+                  href="mailto:bellconner@gmail.com"
                   className="text-sage-700 font-semibold hover:underline"
                 >
-                  hello@example.com →
+                  bellconner@gmail.com →
                 </a>
               </div>
 
@@ -132,7 +132,7 @@ export default function ContactPage() {
                   Connect professionally and see my network
                 </Text>
                 <a
-                  href="https://www.linkedin.com/in/yourprofile"
+                  href="https://www.linkedin.com/in/connerloganbell/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-terracotta-700 font-semibold hover:underline"

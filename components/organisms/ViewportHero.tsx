@@ -178,8 +178,8 @@ export const ViewportHero = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Profile photo column - 4 cols, transforms to show name/location below on scroll */}
             {photoUrl && (
-              <div className="hidden lg:block lg:col-span-4">
-                <div className="relative">
+              <div className="lg:col-span-4">
+                <div className="relative w-[45%] lg:w-full lg:max-w-none">
                   {/* Terracotta glow effect */}
                   <div
                     className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-terracotta-400/20 to-terracotta-300/10 blur-2xl"
@@ -205,9 +205,9 @@ export const ViewportHero = ({
                   </div>
                 </div>
 
-                {/* Name and location - fade in with about section */}
+                {/* Name and location - fade in with about section (desktop only) */}
                 <motion.div
-                  className="mt-4 text-center"
+                  className="mt-4 text-center hidden lg:block"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: showAbout ? 1 : 0 }}
                   transition={{ duration: 1 }}
@@ -237,10 +237,10 @@ export const ViewportHero = ({
                     {/* Main heading */}
                     <h1
                       id="viewport-hero-heading"
-                      className="mb-8 font-fraunces text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-neutral-900 md:text-6xl lg:text-7xl xl:text-8xl"
+                      className="mb-8 font-fraunces text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-neutral-900 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
                     >
                       {greeting && (
-                        <span className="block font-inter text-2xl font-medium tracking-wide text-neutral-600 md:text-3xl lg:text-4xl">
+                        <span className="block font-inter text-xl font-medium tracking-wide text-neutral-600 sm:text-2xl md:text-3xl lg:text-4xl">
                           {greeting}
                         </span>
                       )}
@@ -266,7 +266,7 @@ export const ViewportHero = ({
                     </h1>
 
                     {/* Scroll-triggered typing text with cursor - terracotta color */}
-                    <div className="font-inter text-xl leading-relaxed text-terracotta-600 md:text-2xl lg:text-3xl">
+                    <div className="font-inter text-lg leading-relaxed text-terracotta-600 sm:text-xl md:text-2xl lg:text-3xl">
                       <span className="whitespace-pre-wrap">
                         {shouldReduceMotion ? fullText : visibleText}
                       </span>
@@ -298,6 +298,18 @@ export const ViewportHero = ({
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1 }}
                   >
+                    {/* Name and location on mobile - show in about section */}
+                    <div className="mb-6 lg:hidden">
+                      <p className="font-inter text-xl font-semibold text-neutral-900">
+                        {name}
+                      </p>
+                      {location && (
+                        <p className="font-inter text-base text-neutral-600">
+                          {location}
+                        </p>
+                      )}
+                    </div>
+
                     <h2 className="mb-6 font-fraunces text-3xl font-semibold text-neutral-900 md:text-4xl lg:text-5xl">
                       About Me
                     </h2>

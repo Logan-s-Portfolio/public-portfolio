@@ -7,10 +7,13 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Palette, RefreshCw, Users, Rocket } from "lucide-react";
 import { Navbar } from "@/components/organisms/Navbar";
 import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
 import { Footer } from "@/components/organisms/Footer";
 import { Heading } from "@/components/atoms/Heading";
+import { Avatar } from "@/components/atoms/Avatar";
 import { ServiceOfferingsSection } from "@/components/organisms/ServiceOfferingsSection";
 import type { ProjectData } from "@/components/organisms/ProjectsGrid";
 
@@ -22,7 +25,7 @@ export default function HomePage() {
       tagline: "Transform ideas into testable prototypes",
       description:
         "Rapid prototyping and user testing to validate concepts before full development. I'll help you explore possibilities, identify risks, and build confidence in your direction.",
-      icon: "🎨",
+      icon: <Palette className="h-6 w-6" />,
       deliverables: [
         "Interactive Figma prototypes",
         "User testing sessions & insights",
@@ -38,7 +41,7 @@ export default function HomePage() {
       tagline: "Refresh and modernize existing products",
       description:
         "Breathe new life into your product with modern UX patterns, improved accessibility, and systematic design. I'll audit your current state and deliver a clear path forward.",
-      icon: "🔄",
+      icon: <RefreshCw className="h-6 w-6" />,
       deliverables: [
         "UX/UI audit report",
         "Redesigned screens & flows",
@@ -54,7 +57,7 @@ export default function HomePage() {
       tagline: "Level up your design & development teams",
       description:
         "Hands-on coaching for teams adopting design systems, improving workflows, or building design culture. Available for 1:1 sessions, team workshops, or ongoing support.",
-      icon: "👥",
+      icon: <Users className="h-6 w-6" />,
       deliverables: [
         "Custom workshop sessions",
         "Process documentation",
@@ -70,7 +73,7 @@ export default function HomePage() {
       tagline: "Ship fast, iterate faster",
       description:
         "Full-stack MVP development with Next.js, TypeScript, and modern tooling. Perfect for validating business ideas or launching internal tools quickly.",
-      icon: "🚀",
+      icon: <Rocket className="h-6 w-6" />,
       deliverables: [
         "Production-ready codebase",
         "Design system setup",
@@ -80,29 +83,13 @@ export default function HomePage() {
       timeline: "6-12 weeks",
       accent: "terracotta" as const,
     },
-    {
-      id: "training",
-      title: "Tool Training",
-      tagline: "Master Figma, design systems, & more",
-      description:
-        "Structured training on Figma, design systems, Storybook, or frontend development. Available as live workshops, recorded sessions, or custom documentation.",
-      icon: "🛠️",
-      deliverables: [
-        "Live training sessions",
-        "Recorded walkthroughs",
-        "Custom documentation",
-        "Practice exercises",
-      ],
-      timeline: "1-3 weeks",
-      accent: "sage" as const,
-    },
   ];
 
   const projects: [ProjectData, ProjectData, ProjectData, ProjectData] = [
     {
       id: "design-systems",
       title: "Building Design Systems from Scratch",
-      description: "See how I architect comprehensive design systems using atomic design principles. Every color, spacing value, and component is intentional—from foundational tokens to complex organisms, all documented in Storybook.",
+      description: "See how I architect comprehensive design systems using atomic design principles. Every color, spacing value, and component is intentional, from foundational tokens to complex organisms, all documented in Storybook.",
       badge: "Design Systems",
       imageSrc: "/designsystemshot.png",
       imageAlt: "Design System Preview",
@@ -134,7 +121,7 @@ export default function HomePage() {
     {
       id: "duro-case-study",
       title: "Duro: Event Management Platform",
-      description: "From concept to execution—designing a comprehensive event management platform with recurring events, real-time availability, and seamless booking workflows. See how I tackled complex scheduling logic with intuitive UX.",
+      description: "From concept to execution, designing a comprehensive event management platform with recurring events, real-time availability, and seamless booking workflows. See how I tackled complex scheduling logic with intuitive UX.",
       badge: "Case Study",
       imageSrc: "/duro-case-study.png",
       imageAlt: "Duro Event Management Platform Preview",
@@ -173,15 +160,30 @@ export default function HomePage() {
 
       <Navbar currentPath="/home" />
 
+      {/* Animated page content wrapper */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.6,
+          ease: [0.33, 1, 0.68, 1],
+        }}
+      >
+
       {/* Main content area with top padding for floating navbar */}
       <div className="pt-24">
         {/* Hero Section */}
-        <section className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 xl:py-24">
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.33, 1, 0.68, 1] }}
+          className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 xl:py-24"
+        >
           <Heading as="h1" variant="display-2xl" className="mb-6">
             Product Designer & Entrepreneur
           </Heading>
           <p className="font-inter text-lg md:text-xl text-neutral-700 max-w-3xl leading-relaxed mb-8">
-            Explore how I build design systems, mobile apps, and digital products that solve real problems.
+            Explore how I build design systems, mobile apps, and digital products that solve <span className="text-terracotta-600 font-semibold">real problems.</span>
           </p>
 
           {/* CTA Buttons */}
@@ -199,28 +201,83 @@ export default function HomePage() {
               Get in Touch
             </Link>
           </div>
-        </section>
+        </motion.section>
 
         {/* Service Offerings Section */}
-        <ServiceOfferingsSection services={services} />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}
+        >
+          <ServiceOfferingsSection
+            services={services}
+            cta={
+              <div className="rounded-xl bg-terracotta-600 p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-6 min-h-full">
+                {/* Avatar */}
+                <Avatar
+                  src="/logan_profile_duro.png"
+                  alt="Logan Bell"
+                  size="2xl"
+                  className="flex-shrink-0"
+                />
+
+                {/* Content */}
+                <div className="flex flex-col text-center md:text-left">
+                  <Heading as="h3" variant="h3" className="mb-4 text-white">
+                    Ready to Start Your Project?
+                  </Heading>
+                  <p className="font-inter text-lg text-terracotta-50 mb-6">
+                    Let's discuss how I can help bring your vision to life.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 font-inter font-medium rounded-lg bg-white text-terracotta-600 px-6 py-3 shadow-sm hover:shadow-md active:shadow-sm transition-all duration-300 self-center md:self-start"
+                  >
+                    Book a Call
+                  </Link>
+                </div>
+              </div>
+            }
+          />
+        </motion.div>
 
         {/* Projects Grid - reduced padding, container controls spacing */}
-        <section className="px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
+          className="px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16"
+        >
+          {/* Section Heading */}
+          <div className="mb-12 text-center max-w-4xl mx-auto">
+            <Heading as="h2" variant="h2" className="mb-4">
+              See My Work in Action
+            </Heading>
+            <p className="font-inter text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+              From design systems to AI-assisted development, explore how I turn complex challenges into elegant solutions
+            </p>
+          </div>
+
           <ProjectsGrid
             projects={projects}
             isVisible={true}
             isFramed={false}
           />
-        </section>
+        </motion.section>
 
         {/* Bottom CTA Section - smaller than hero for hierarchy */}
-        <section className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16 text-center">
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7, ease: [0.33, 1, 0.68, 1] }}
+          className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16 text-center"
+        >
           <Heading as="h2" variant="h2" className="mb-6">
             Let's Build Something Together
           </Heading>
           <p className="font-inter text-lg md:text-xl text-neutral-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             I'm always interested in new projects and collaborations. Whether you need a design system,
-            a mobile app, or strategic product guidance—let's chat.
+            a mobile app, or strategic product guidance, let's chat.
           </p>
           <Link
             href="/contact"
@@ -228,11 +285,12 @@ export default function HomePage() {
           >
             Get in Touch
           </Link>
-        </section>
+        </motion.section>
       </div>
 
-      {/* Footer */}
-      <Footer />
+        {/* Footer */}
+        <Footer />
+      </motion.div>
     </div>
   );
 }

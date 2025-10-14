@@ -13,7 +13,7 @@ import { Text } from "@/components/atoms/Text";
 import { Badge } from "@/components/atoms/Badge";
 import { Tag } from "@/components/atoms/Tag";
 import { Divider } from "@/components/atoms/Divider";
-import { Mail, Phone, Linkedin, Award, TrendingUp, Users, Code } from "lucide-react";
+import { Mail, Phone, Linkedin, Award, TrendingUp, Users, Code, Sparkles, Database, Zap, Target } from "lucide-react";
 
 export default function ResumePage() {
   const breadcrumbs = [{ label: "Resume", href: "/resume" }];
@@ -79,7 +79,7 @@ export default function ResumePage() {
             Logan Bell
           </Heading>
           <Text variant="lead" className="mb-6 text-neutral-700">
-            AI-Driven Full-Stack Engineer & SaaS Founder
+            Product Builder & SaaS Founder
           </Text>
           <div className="flex items-center gap-2 mb-8">
             <span className="text-neutral-500">📍</span>
@@ -124,7 +124,7 @@ export default function ResumePage() {
             Summary
           </Heading>
           <Text variant="body" className="text-neutral-700 leading-relaxed">
-            Technical founder who evolved from no-code MVP to architecting enterprise-grade SaaS platform using AI-driven development. Built production system with 261-table PostgreSQL database, 1,100+ stored procedures, and 1,200+ React components via Claude Code. Combines 4+ years of marketplace expertise with newfound full-stack engineering capabilities, proving ability to rapidly master complex technical domains.
+            Product-focused founder who leverages AI-driven development to ship production-ready platforms. I've built and scaled a complex SaaS marketplace from concept to production using modern development tools. My strength is translating business problems into working software quickly, combining 4+ years of marketplace and partnership experience with AI-assisted workflows.
           </Text>
         </section>
 
@@ -237,53 +237,53 @@ export default function ResumePage() {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex gap-4 p-4 rounded-lg bg-white border-l-4 border-terracotta-500 shadow-sm">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-terracotta-100 flex items-center justify-center">
-                <span className="text-2xl">🚀</span>
+                <Sparkles className="h-6 w-6 text-terracotta-700" />
               </div>
               <div>
                 <Text variant="body" weight="semibold" className="mb-1 text-neutral-900">
-                  Self-taught full-stack development
+                  AI-Assisted Development
                 </Text>
                 <Text variant="small" className="text-neutral-600">
-                  Through AI pair programming in 6 months
+                  Shipped production SaaS platform using modern AI workflows
                 </Text>
               </div>
             </div>
             <div className="flex gap-4 p-4 rounded-lg bg-white border-l-4 border-sage-500 shadow-sm">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center">
-                <span className="text-2xl">💪</span>
+                <Database className="h-6 w-6 text-sage-700" />
               </div>
               <div>
                 <Text variant="body" weight="semibold" className="mb-1 text-neutral-900">
-                  Built production system
+                  Built Production System
                 </Text>
                 <Text variant="small" className="text-neutral-600">
-                  Handling 261 database tables with zero major incidents
+                  Complex multi-tenant marketplace from concept to launch
                 </Text>
               </div>
             </div>
             <div className="flex gap-4 p-4 rounded-lg bg-white border-l-4 border-terracotta-500 shadow-sm">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-terracotta-100 flex items-center justify-center">
-                <span className="text-2xl">⚡</span>
+                <Zap className="h-6 w-6 text-terracotta-700" />
               </div>
               <div>
                 <Text variant="body" weight="semibold" className="mb-1 text-neutral-900">
-                  Reduced development time by 10x
+                  Accelerated Development
                 </Text>
                 <Text variant="small" className="text-neutral-600">
-                  Using AI-driven methodologies
+                  Rapid iteration cycles with AI-driven workflows
                 </Text>
               </div>
             </div>
             <div className="flex gap-4 p-4 rounded-lg bg-white border-l-4 border-sage-500 shadow-sm">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center">
-                <span className="text-2xl">🎯</span>
+                <TrendingUp className="h-6 w-6 text-sage-700" />
               </div>
               <div>
                 <Text variant="body" weight="semibold" className="mb-1 text-neutral-900">
-                  Maintained business operations
+                  Business & Product Focus
                 </Text>
                 <Text variant="small" className="text-neutral-600">
-                  While completing technical transformation
+                  4+ years marketplace partnerships and growth experience
                 </Text>
               </div>
             </div>

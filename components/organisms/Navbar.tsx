@@ -26,7 +26,6 @@ export interface NavbarProps {
 
 const navItems: NavItem[] = [
   { name: "Home", href: "/home" },
-  { name: "About", href: "/about" },
   { name: "Resume", href: "/resume" },
   { name: "Get in Touch", href: "/contact" },
 ];
