@@ -9,6 +9,9 @@
 
 import { ViewportHero } from "@/components/organisms/ViewportHero";
 
+// Force dynamic rendering - ViewportHero manipulates DOM
+export const dynamic = 'force-dynamic';
+
 export default function LandingPage() {
   const bioParagraphs = [
     "I'm a product designer and entrepreneur based in Austin, TX. With over 10 years of experience, I specialize in creating intuitive, beautiful interfaces that users love and businesses need.",
