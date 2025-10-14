@@ -48,18 +48,18 @@ export const FlutterFlowBuilder = ({
   >(null);
 
   const navItems = [
-    { icon: LayoutDashboard, label: "Dashboard", step: null as const },
-    { icon: Package, label: "Widget Palette", step: "wireframe" as const },
-    { icon: FileText, label: "Page Selector", step: "wireframe" as const },
-    { icon: GitBranch, label: "Widget Tree", step: "functional" as const },
-    { icon: Presentation, label: "Storyboard", step: "storyboard" as const },
-    { icon: Flame, label: "Firestore", step: "schema" as const },
-    { icon: Box, label: "Data Types", step: "schema" as const },
-    { icon: Settings, label: "App Values", step: "functional" as const },
-    { icon: Globe, label: "API Calls", step: "api-calls" as const },
-    { icon: ImageIcon, label: "Media Assets", step: "design" as const },
-    { icon: Code, label: "Custom Functions", step: "custom" as const },
-    { icon: Cloud, label: "Cloud Functions", step: "cloud-functions" as const },
+    { icon: LayoutDashboard, label: "Dashboard", step: null },
+    { icon: Package, label: "Widget Palette", step: "wireframe" },
+    { icon: FileText, label: "Page Selector", step: "wireframe" },
+    { icon: GitBranch, label: "Widget Tree", step: "functional" },
+    { icon: Presentation, label: "Storyboard", step: "storyboard" },
+    { icon: Flame, label: "Firestore", step: "schema" },
+    { icon: Box, label: "Data Types", step: "schema" },
+    { icon: Settings, label: "App Values", step: "functional" },
+    { icon: Globe, label: "API Calls", step: "api-calls" },
+    { icon: ImageIcon, label: "Media Assets", step: "design" },
+    { icon: Code, label: "Custom Functions", step: "custom" },
+    { icon: Cloud, label: "Cloud Functions", step: "cloud-functions" },
   ];
 
   return (
@@ -353,7 +353,7 @@ export const FlutterFlowBuilder = ({
         >
           <div className="space-y-3">
             <div>
-              <Heading as="h4" variant="section" className="mb-2 text-sm">
+              <Heading as="h4" variant="h3" className="mb-2 text-sm">
                 Properties
               </Heading>
               <div className="space-y-2">
@@ -373,7 +373,7 @@ export const FlutterFlowBuilder = ({
             </div>
 
             <div>
-              <Heading as="h4" variant="section" className="mb-2 text-sm">
+              <Heading as="h4" variant="h3" className="mb-2 text-sm">
                 Actions
               </Heading>
               <div className="space-y-2">
@@ -385,7 +385,7 @@ export const FlutterFlowBuilder = ({
             </div>
 
             <div>
-              <Heading as="h4" variant="section" className="mb-2 text-sm">
+              <Heading as="h4" variant="h3" className="mb-2 text-sm">
                 Backend Query
               </Heading>
               <div className="rounded bg-sage-50 border border-sage-200 p-2">

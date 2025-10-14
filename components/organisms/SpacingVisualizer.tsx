@@ -67,9 +67,9 @@ export const SpacingVisualizer = ({
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h2" variant="hero" id="spacing-visualizer-heading" className="mb-4">
+          <Heading as="h2" variant="display-2xl" id="spacing-visualizer-heading" className="mb-4">
             {heading}
           </Heading>
           <Text variant="lead" className="mx-auto max-w-3xl text-neutral-600">
@@ -102,7 +102,7 @@ export const SpacingVisualizer = ({
           className="relative mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] as const }}
         >
           {/* Background 8px Grid */}
           {showGrid && (
@@ -144,7 +144,7 @@ export const SpacingVisualizer = ({
                   transition={{
                     duration: 0.6,
                     delay: 0.4 + index * 0.05,
-                    ease: [0.33, 1, 0.68, 1],
+                    ease: [0.33, 1, 0.68, 1] as const,
                   }}
                   aria-label={`${token.name}: ${token.value}`}
                 >
@@ -201,9 +201,9 @@ export const SpacingVisualizer = ({
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h3" variant="title" className="mb-8">
+          <Heading as="h3" variant="h3" className="mb-8">
             Spacing in Practice
           </Heading>
 
@@ -218,7 +218,7 @@ export const SpacingVisualizer = ({
               transition={{
                 duration: 0.6,
                 delay: 0.8,
-                ease: [0.33, 1, 0.68, 1],
+                ease: [0.33, 1, 0.68, 1] as const,
               }}
             >
               <div className="mb-4 rounded-lg bg-sage-100 p-4">
@@ -242,7 +242,7 @@ export const SpacingVisualizer = ({
               transition={{
                 duration: 0.6,
                 delay: 0.9,
-                ease: [0.33, 1, 0.68, 1],
+                ease: [0.33, 1, 0.68, 1] as const,
               }}
             >
               <div className="flex gap-4">
@@ -269,7 +269,7 @@ export const SpacingVisualizer = ({
               transition={{
                 duration: 0.6,
                 delay: 1,
-                ease: [0.33, 1, 0.68, 1],
+                ease: [0.33, 1, 0.68, 1] as const,
               }}
             >
               <div className="space-y-4">
@@ -296,7 +296,7 @@ export const SpacingVisualizer = ({
               transition={{
                 duration: 0.6,
                 delay: 1.1,
-                ease: [0.33, 1, 0.68, 1],
+                ease: [0.33, 1, 0.68, 1] as const,
               }}
             >
               <div className="space-y-8">
@@ -316,9 +316,9 @@ export const SpacingVisualizer = ({
           className="mt-16 rounded-2xl border-2 border-sage-200 bg-sage-50 p-8"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 1.2, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h3" variant="section" className="mb-4">
+          <Heading as="h3" variant="h3" className="mb-4">
             Why 8-Point Grid?
           </Heading>
           <div className="grid gap-6 md:grid-cols-3">

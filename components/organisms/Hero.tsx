@@ -75,7 +75,7 @@ export const Hero = ({
       y: 0,
       transition: {
         duration: shouldReduceMotion ? 0 : 0.5,
-        ease: [0.33, 1, 0.68, 1],
+        ease: [0.33, 1, 0.68, 1] as const,
       },
     },
   };

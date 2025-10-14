@@ -42,7 +42,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           {/* Header */}
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Buttons
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -137,7 +137,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Headings
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -222,7 +222,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Text
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -294,7 +294,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Badges
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -383,7 +383,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Avatars
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -452,7 +452,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Inputs
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -518,7 +518,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Links
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -580,7 +580,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Spinners
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -634,7 +634,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Dividers
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -693,7 +693,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Progress Bars
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -756,7 +756,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Skeletons
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -819,7 +819,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Code
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -869,7 +869,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Icon Buttons
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -935,7 +935,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Checkboxes
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -989,7 +989,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Labels
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -1051,7 +1051,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Tags
             </Heading>
             <Text variant="small" className="text-neutral-600">
@@ -1119,7 +1119,7 @@ export const ComponentSpecimen = ({ className }: ComponentSpecimenProps) => {
       <div className="w-full max-w-2xl mx-auto">
         <div className="aspect-square border-2 border-neutral-200 rounded-lg bg-white flex flex-col overflow-hidden">
           <div className="px-8 py-4 border-b-2 border-neutral-200 bg-neutral-50 flex-shrink-0">
-            <Heading as="h3" variant="section" className="text-neutral-900 mb-1">
+            <Heading as="h3" variant="h3" className="text-neutral-900 mb-1">
               Images
             </Heading>
             <Text variant="small" className="text-neutral-600">

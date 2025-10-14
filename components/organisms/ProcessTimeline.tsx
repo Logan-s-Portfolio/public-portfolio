@@ -142,9 +142,9 @@ export const ProcessTimeline = ({
           className="mb-24 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h2" variant="hero" id="process-timeline-heading" className="mb-4">
+          <Heading as="h2" variant="display-2xl" id="process-timeline-heading" className="mb-4">
             {heading}
           </Heading>
           <Text variant="lead" className="mx-auto max-w-3xl text-neutral-600">
@@ -230,7 +230,7 @@ const TimelineItem = ({ step, index, isRight, colors }: TimelineItemProps) => {
       transition={{
         duration: 0.8,
         delay: index * 0.1,
-        ease: [0.33, 1, 0.68, 1],
+        ease: [0.33, 1, 0.68, 1] as const,
       }}
     >
       {/* Dot on timeline - mobile: left, desktop: center */}
@@ -244,7 +244,7 @@ const TimelineItem = ({ step, index, isRight, colors }: TimelineItemProps) => {
         transition={{
           duration: 0.5,
           delay: index * 0.1 + 0.2,
-          ease: [0.33, 1, 0.68, 1],
+          ease: [0.33, 1, 0.68, 1] as const,
         }}
         aria-hidden="true"
       >
@@ -271,7 +271,7 @@ const TimelineItem = ({ step, index, isRight, colors }: TimelineItemProps) => {
           </div>
 
           {/* Title */}
-          <Heading as="h3" variant="title" className="mb-3">
+          <Heading as="h3" variant="h3" className="mb-3">
             {step.title}
           </Heading>
 

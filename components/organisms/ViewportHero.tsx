@@ -12,6 +12,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { StatCard } from "@/components/molecules/StatCard";
 import { Button } from "@/components/atoms/Button";
@@ -80,9 +81,8 @@ export const ViewportHero = ({
     if (shouldReduceMotion) {
       setVisibleCharCount(totalChars);
       setIsTypingComplete(true);
-      onTypingComplete?.();
     }
-  }, [shouldReduceMotion, onTypingComplete, totalChars]);
+  }, [shouldReduceMotion, totalChars]);
 
   // Lock scrolling and drive typing with wheel events
   useEffect(() => {
@@ -111,7 +111,6 @@ export const ViewportHero = ({
       // Check if typing is complete
       if (newCharCount >= totalChars) {
         setIsTypingComplete(true);
-        onTypingComplete?.();
       }
     };
 
@@ -124,55 +123,30 @@ export const ViewportHero = ({
       window.removeEventListener('wheel', handleWheel);
       // Don't unlock scroll here - let the next useEffect handle it
     };
-  }, [isTypingComplete, totalChars, onTypingComplete, shouldReduceMotion]);
+  }, [isTypingComplete, totalChars, shouldReduceMotion]);
 
   // Auto-fade about section after typing completes
   useEffect(() => {
     if (!isTypingComplete) return;
 
-    // Keep scroll locked! Don't unlock yet - wait for About to fully fade in
+    // Unlock scroll immediately
+    document.body.style.overflow = '';
 
     if (shouldReduceMotion) {
       // Show about immediately if reduced motion
       setShowAbout(true);
-      setIsAboutFullyVisible(true);
-      // Unlock scroll immediately for reduced motion
-      document.body.style.overflow = '';
       return;
     }
 
-    // Wait 800ms, then fade in about content
+    // Wait 500ms, then fade in about content
     const aboutTimer = setTimeout(() => {
       setShowAbout(true);
-    }, 800);
-
-    // About fade takes 1s, wait 800ms + 1000ms = 1800ms total
-    // Unlock scroll and mark as fully visible - let user read About
-    const aboutCompleteTimer = setTimeout(() => {
-      setIsAboutFullyVisible(true);
-      document.body.style.overflow = ''; // Unlock scroll NOW - user can read
-    }, 1800);
+    }, 500);
 
     return () => {
       clearTimeout(aboutTimer);
-      clearTimeout(aboutCompleteTimer);
     };
   }, [isTypingComplete, shouldReduceMotion]);
-
-  // Trigger nav/cards when user scrolls after reading About
-  useEffect(() => {
-    if (!isAboutFullyVisible || hasScrolledAway) return;
-
-    const unsubscribe = scrollY.on("change", (latest) => {
-      // When user scrolls ANY amount after About is visible, trigger nav/cards overlay immediately
-      if (latest > 5) {
-        setHasScrolledAway(true);
-        onIntroComplete?.();
-      }
-    });
-
-    return () => unsubscribe();
-  }, [scrollY, hasScrolledAway, isAboutFullyVisible, onIntroComplete]);
 
 
   // Get the visible text based on character count
@@ -182,13 +156,8 @@ export const ViewportHero = ({
     <motion.section
       id="viewport-hero"
       ref={containerRef}
-      animate={{
-        minHeight: "100vh",
-        width: isFramed ? "calc(100vw - 256px)" : "100vw",
-      }}
-      transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       className={cn(
-        "flex flex-col overflow-hidden",
+        "flex flex-col min-h-screen overflow-hidden",
         className
       )}
       aria-labelledby="viewport-hero-heading"
@@ -356,6 +325,18 @@ export const ViewportHero = ({
                             label={stat.label}
                           />
                         ))}
+                      </div>
+                    )}
+
+                    {/* CTA Button */}
+                    {ctaLabel && ctaHref && (
+                      <div className="mt-8">
+                        <Link
+                          href={ctaHref}
+                          className="inline-flex items-center justify-center gap-2 font-inter font-medium rounded-md transition-colors transition-shadow duration-[300ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-600 focus-visible:ring-offset-2 bg-terracotta-600 text-white shadow-sm hover:bg-terracotta-700 hover:shadow-md active:bg-terracotta-800 active:shadow-sm h-12 px-6 text-lg"
+                        >
+                          {ctaLabel}
+                        </Link>
                       </div>
                     )}
                   </motion.div>

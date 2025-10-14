@@ -150,8 +150,7 @@ ProjectCard.Image = function ProjectCardImage({
     "relative overflow-hidden bg-neutral-100 flex-shrink-0",
     layout === 'grid' && "w-full aspect-video",
     layout === 'featured' && "w-full aspect-[16/9]",
-    layout === 'horizontal' && "w-full md:w-2/5 aspect-video md:aspect-square",
-    className
+    layout === 'horizontal' && "w-full md:w-2/5 aspect-video md:aspect-square"
   );
 
   return (
@@ -162,7 +161,10 @@ ProjectCard.Image = function ProjectCardImage({
         width={width}
         height={height}
         priority={priority}
-        className="object-cover w-full h-full transition-transform duration-150 ease-out hover:scale-105"
+        className={cn(
+          "w-full h-full transition-transform duration-150 ease-out hover:scale-105",
+          className
+        )}
       />
     </div>
   );

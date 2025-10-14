@@ -106,9 +106,9 @@ export const CompetitiveDifferentiation = ({
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h2" variant="hero" id="competitive-differentiation-heading" className="mb-4">
+          <Heading as="h2" variant="display-2xl" id="competitive-differentiation-heading" className="mb-4">
             {heading}
           </Heading>
           <Text variant="lead" className="mx-auto max-w-3xl text-neutral-600">
@@ -144,12 +144,12 @@ export const CompetitiveDifferentiation = ({
                 transition={{
                   duration: 0.8,
                   delay: index * 0.15,
-                  ease: [0.33, 1, 0.68, 1],
+                  ease: [0.33, 1, 0.68, 1] as const,
                 }}
               >
                 {/* Category Header */}
                 <div className="mb-6 flex items-center justify-between">
-                  <Heading as="h3" variant="section">
+                  <Heading as="h3" variant="h3">
                     {stat.category}
                   </Heading>
                   <div className={cn("rounded-full px-4 py-1 text-xs font-bold uppercase tracking-wide text-white", colors.bg)}>
@@ -177,7 +177,7 @@ export const CompetitiveDifferentiation = ({
                         transition={{
                           duration: 1,
                           delay: index * 0.15 + 0.5,
-                          ease: [0.33, 1, 0.68, 1],
+                          ease: [0.33, 1, 0.68, 1] as const,
                         }}
                       />
                     </div>
@@ -203,7 +203,7 @@ export const CompetitiveDifferentiation = ({
                         transition={{
                           duration: 1,
                           delay: index * 0.15 + 0.6,
-                          ease: [0.33, 1, 0.68, 1],
+                          ease: [0.33, 1, 0.68, 1] as const,
                         }}
                       />
                     </div>
@@ -227,12 +227,12 @@ export const CompetitiveDifferentiation = ({
           transition={{
             duration: 0.8,
             delay: stats.length * 0.15 + 0.2,
-            ease: [0.33, 1, 0.68, 1],
+            ease: [0.33, 1, 0.68, 1] as const,
           }}
         >
           <div className="grid gap-8 md:grid-cols-2">
             <div>
-              <Heading as="h3" variant="title" className="mb-4">
+              <Heading as="h3" variant="h3" className="mb-4">
                 Why Differentiation Matters
               </Heading>
               <Text variant="body" className="mb-4 text-neutral-700">

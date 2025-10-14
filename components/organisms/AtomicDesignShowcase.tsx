@@ -140,7 +140,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.avatar.y,
               scale: positions.avatar.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Avatar",
@@ -169,7 +169,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.badge1.y,
               scale: positions.badge1.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Badge #1",
@@ -197,7 +197,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.badge2.y,
               scale: positions.badge2.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Badge #2",
@@ -208,7 +208,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               "cursor-pointer transition-all",
               viewMode !== "complete" && "ring-2 ring-terracotta-500 ring-offset-2 rounded-full"
             )}>
-              <Badge variant="sage" size="sm">Next.js</Badge>
+              <Badge variant="success" size="sm">Next.js</Badge>
             </div>
             {viewMode === "atoms" && (
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-terracotta-600 text-white px-2 py-1 rounded text-xs font-semibold">
@@ -225,7 +225,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.badge3.y,
               scale: positions.badge3.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Badge #3",
@@ -236,7 +236,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               "cursor-pointer transition-all",
               viewMode !== "complete" && "ring-2 ring-terracotta-500 ring-offset-2 rounded-full"
             )}>
-              <Badge variant="neutral" size="sm">TypeScript</Badge>
+              <Badge variant="info" size="sm">TypeScript</Badge>
             </div>
             {viewMode === "atoms" && (
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-terracotta-600 text-white px-2 py-1 rounded text-xs font-semibold">
@@ -254,7 +254,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.eyebrow.y,
               scale: positions.eyebrow.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Text (Eyebrow)",
@@ -285,7 +285,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.headline.y,
               scale: positions.headline.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Heading (Hero)",
@@ -296,7 +296,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               "cursor-pointer transition-all",
               viewMode !== "complete" && "ring-2 ring-terracotta-500 ring-offset-2 rounded px-2"
             )}>
-              <Heading as="h1" variant="hero" className="whitespace-nowrap">
+              <Heading as="h1" variant="display-2xl" className="whitespace-nowrap">
                 Logan Bell
               </Heading>
             </div>
@@ -316,7 +316,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.subheadline.y,
               scale: positions.subheadline.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Text (Body)",
@@ -347,7 +347,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.primaryBtn.y,
               scale: positions.primaryBtn.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Button (Primary)",
@@ -376,7 +376,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               y: positions.secondaryBtn.y,
               scale: positions.secondaryBtn.scale,
             }}
-            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             onClick={() => setSelectedPiece({
               type: "atom",
               name: "Button (Secondary)",
@@ -415,7 +415,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               )}
             >
               <div className="flex items-center justify-between mb-3">
-                <Heading as="h3" variant="section">
+                <Heading as="h3" variant="h3">
                   {selectedPiece.name}
                 </Heading>
                 <button

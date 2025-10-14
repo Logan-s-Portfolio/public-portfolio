@@ -132,7 +132,7 @@ export const DesignSystemLayout = ({
             </nav>
 
             {/* Page Title */}
-            <Heading as="h1" variant="hero" className="mb-8">
+            <Heading as="h1" variant="display-2xl" className="mb-8">
               {pageTitle}
             </Heading>
 

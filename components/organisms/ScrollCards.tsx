@@ -114,7 +114,7 @@ const ScrollCardItem = ({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] as const }}
             viewport={{ once: true }}
             className="mb-8"
           >
@@ -138,7 +138,7 @@ const ScrollCardItem = ({
             transition={{
               duration: 0.6,
               delay: 0.1,
-              ease: [0.33, 1, 0.68, 1],
+              ease: [0.33, 1, 0.68, 1] as const,
             }}
             viewport={{ once: true }}
             className="mb-6 font-fraunces text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-neutral-900 md:text-5xl lg:text-6xl"
@@ -153,7 +153,7 @@ const ScrollCardItem = ({
             transition={{
               duration: 0.6,
               delay: 0.2,
-              ease: [0.33, 1, 0.68, 1],
+              ease: [0.33, 1, 0.68, 1] as const,
             }}
             viewport={{ once: true }}
             className="font-inter text-lg leading-[1.6] text-neutral-600 md:text-xl lg:text-2xl"
@@ -168,7 +168,7 @@ const ScrollCardItem = ({
             transition={{
               duration: 0.6,
               delay: 0.3,
-              ease: [0.33, 1, 0.68, 1],
+              ease: [0.33, 1, 0.68, 1] as const,
             }}
             viewport={{ once: true }}
             className="mt-12 flex items-center justify-center gap-2"
@@ -217,7 +217,7 @@ export const ScrollCards = ({ cards, className }: ScrollCardsProps) => {
             index={index}
             totalCards={cards.length}
             scrollYProgress={scrollYProgress}
-            shouldReduceMotion={shouldReduceMotion}
+            shouldReduceMotion={!!shouldReduceMotion}
           />
         ))}
       </div>

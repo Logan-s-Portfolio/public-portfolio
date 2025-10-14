@@ -101,7 +101,7 @@ export const StorybookShowcase = ({
     <div className={cn("space-y-8", className)}>
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
-        <Heading as="h2" variant="title" className="mb-4">
+        <Heading as="h2" variant="h3" className="mb-4">
           Component Library
         </Heading>
       </div>
@@ -163,7 +163,7 @@ export const StorybookShowcase = ({
           >
             {/* Story Title */}
             <div className="px-4 py-3 border-b-2 border-neutral-200 bg-neutral-50">
-              <Heading as="h3" variant="section" className="text-neutral-900">
+              <Heading as="h3" variant="h3" className="text-neutral-900">
                 {story.title}
               </Heading>
             </div>

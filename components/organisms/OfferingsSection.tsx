@@ -95,7 +95,7 @@ export const OfferingsSection = ({
         {/* Section Heading */}
         {heading && (
           <div className="mb-12 text-center md:mb-16">
-            <Heading as="h2" variant="hero" className="mb-4">
+            <Heading as="h2" variant="display-2xl" className="mb-4">
               {heading}
             </Heading>
             {subheading && (
@@ -161,7 +161,7 @@ export const OfferingsSection = ({
                   transition={{
                     duration: 0.6,
                     delay: index * 0.1,
-                    ease: [0.33, 1, 0.68, 1],
+                    ease: [0.33, 1, 0.68, 1] as const,
                   }}
                   viewport={{ once: true, margin: "-100px" }}
                   className={cn(
@@ -189,7 +189,7 @@ export const OfferingsSection = ({
                   )}
 
                   {/* Title */}
-                  <Heading as="h3" variant="section" className="mb-3">
+                  <Heading as="h3" variant="h3" className="mb-3">
                     {offering.title}
                   </Heading>
 

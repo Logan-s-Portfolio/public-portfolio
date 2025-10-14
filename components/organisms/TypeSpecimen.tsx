@@ -80,9 +80,9 @@ export const TypeSpecimen = ({
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h2" variant="hero" id="type-specimen-heading" className="mb-4">
+          <Heading as="h2" variant="display-2xl" id="type-specimen-heading" className="mb-4">
             {heading}
           </Heading>
           <Text variant="lead" className="mx-auto max-w-3xl text-neutral-600">
@@ -95,7 +95,7 @@ export const TypeSpecimen = ({
           className="mb-24 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] as const }}
         >
           <div className="mb-8 font-fraunces text-6xl font-bold tracking-tight text-neutral-900 md:text-7xl lg:text-8xl">
             Fraunces
@@ -148,9 +148,9 @@ export const TypeSpecimen = ({
           className="mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h3" variant="title" className="mb-8">
+          <Heading as="h3" variant="h3" className="mb-8">
             Type Scale
           </Heading>
           <div className="space-y-8">
@@ -163,7 +163,7 @@ export const TypeSpecimen = ({
                 transition={{
                   duration: 0.6,
                   delay: 0.6 + index * 0.05,
-                  ease: [0.33, 1, 0.68, 1],
+                  ease: [0.33, 1, 0.68, 1] as const,
                 }}
               >
                 <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4">
@@ -214,9 +214,9 @@ export const TypeSpecimen = ({
           className="mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h3" variant="title" className="mb-8">
+          <Heading as="h3" variant="h3" className="mb-8">
             Font Weights
           </Heading>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -229,7 +229,7 @@ export const TypeSpecimen = ({
                 transition={{
                   duration: 0.6,
                   delay: 0.8 + index * 0.1,
-                  ease: [0.33, 1, 0.68, 1],
+                  ease: [0.33, 1, 0.68, 1] as const,
                 }}
               >
                 <Text variant="caption" className="mb-3 uppercase text-neutral-500">
@@ -257,9 +257,9 @@ export const TypeSpecimen = ({
           className="mb-24"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 1, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 1, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h3" variant="title" className="mb-8">
+          <Heading as="h3" variant="h3" className="mb-8">
             Letter Spacing
           </Heading>
           <div className="space-y-4">
@@ -272,7 +272,7 @@ export const TypeSpecimen = ({
                 transition={{
                   duration: 0.6,
                   delay: 1 + index * 0.1,
-                  ease: [0.33, 1, 0.68, 1],
+                  ease: [0.33, 1, 0.68, 1] as const,
                 }}
               >
                 <div className="mb-3 flex items-baseline justify-between">
@@ -302,9 +302,9 @@ export const TypeSpecimen = ({
           className="rounded-2xl border-2 border-sage-200 bg-sage-50 p-8 md:p-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 1.2, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h3" variant="hero" className="mb-6 font-fraunces">
+          <Heading as="h3" variant="display-2xl" className="mb-6 font-fraunces">
             Typography in Action
           </Heading>
           <Text variant="lead" className="mb-6 font-inter">

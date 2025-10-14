@@ -126,7 +126,7 @@ export const ColorPaletteShowcase = ({
               transition={{
                 duration: 0.8,
                 delay: paletteIndex * 0.2,
-                ease: [0.33, 1, 0.68, 1],
+                ease: [0.33, 1, 0.68, 1] as const,
               }}
             >
               {/* Palette Header */}
@@ -190,14 +190,14 @@ export const ColorPaletteShowcase = ({
                         transition={{
                           duration: 0.5,
                           delay: paletteIndex * 0.15 + colorIndex * 0.04,
-                          ease: [0.33, 1, 0.68, 1],
+                          ease: [0.33, 1, 0.68, 1] as const,
                         }}
                         whileHover={{
                           scale: 1.05,
                           y: -4,
                           transition: {
                             duration: 0.2,
-                            ease: [0.33, 1, 0.68, 1],
+                            ease: [0.33, 1, 0.68, 1] as const,
                           },
                         }}
                         whileTap={{ scale: 0.98 }}

@@ -13,8 +13,17 @@ const headingVariants = cva(
   {
     variants: {
       variant: {
-        // Display: 48px+ (Fraunces)
-        display: "font-fraunces text-4xl lg:text-5xl font-bold tracking-tight leading-[1.167]",
+        // Display 2xl: 80px (Fraunces) - Hero displays
+        "display-2xl": "font-fraunces text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1]",
+
+        // Display xl: 64px (Fraunces) - Large displays
+        "display-xl": "font-fraunces text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-[1.125]",
+
+        // Display lg: 48px (Fraunces)
+        "display-lg": "font-fraunces text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight leading-[1.167]",
+
+        // Legacy display (maps to display-lg for backwards compatibility)
+        display: "font-fraunces text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight leading-[1.167]",
 
         // Heading 3xl: 40px (Fraunces)
         h1: "font-fraunces text-3xl lg:text-4xl font-semibold tracking-tight leading-[1.2]",

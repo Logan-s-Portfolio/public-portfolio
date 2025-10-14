@@ -295,7 +295,7 @@ export const MobileNavMenu = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] as const }}
             className="fixed inset-0 z-[1000] bg-black"
             onClick={onClose}
             aria-hidden="true"
@@ -307,7 +307,7 @@ export const MobileNavMenu = ({
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] as const }}
             className={cn(
               "fixed top-0 right-0 bottom-0 z-[1040] w-[80%] max-w-[320px] bg-white shadow-2xl overflow-y-auto",
               className

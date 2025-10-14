@@ -116,7 +116,7 @@ export const CaseStudyLayout = ({
         {/* Content Sections */}
         {sections.map((section) => (
           <section key={section.id} className="mb-16">
-            <Heading as="h2" variant="title" className="mb-8">
+            <Heading as="h2" variant="h3" className="mb-8">
               {section.heading}
             </Heading>
 
@@ -182,7 +182,7 @@ export const CaseStudyLayout = ({
         {/* Timeline Section */}
         {timeline && timeline.length > 0 && (
           <section className="mb-16">
-            <Heading as="h2" variant="title" className="mb-8">
+            <Heading as="h2" variant="h3" className="mb-8">
               Project Timeline
             </Heading>
             <TimelineSection
@@ -199,7 +199,7 @@ export const CaseStudyLayout = ({
         {/* Testimonial Section */}
         {testimonial && (
           <section className="mb-16">
-            <Heading as="h2" variant="title" className="mb-8">
+            <Heading as="h2" variant="h3" className="mb-8">
               Client Feedback
             </Heading>
             <TestimonialCard

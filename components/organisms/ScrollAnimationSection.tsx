@@ -92,7 +92,7 @@ export const ScrollAnimationSection = ({
   const variants = getAnimationVariants();
   const transition = {
     duration: 0.8,
-    ease: [0.33, 1, 0.68, 1],
+    ease: [0.33, 1, 0.68, 1] as const,
   };
 
   // For parallax, we use different rendering
@@ -129,7 +129,7 @@ export const ScrollAnimationSection = ({
                 }
                 transition={{
                   duration: 0.5,
-                  ease: [0.33, 1, 0.68, 1],
+                  ease: [0.33, 1, 0.68, 1] as const,
                   delay: shouldReduceMotion ? 0 : index * 0.1,
                 }}
               >

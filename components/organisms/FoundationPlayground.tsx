@@ -78,7 +78,7 @@ export const FoundationPlayground = ({ className }: FoundationPlaygroundProps) =
                     transition={
                       shouldReduceMotion
                         ? { duration: 0 }
-                        : { duration: 0.3, ease: [0.33, 1, 0.68, 1] }
+                        : { duration: 0.3, ease: [0.33, 1, 0.68, 1] as const }
                     }
                   />
                 )}
@@ -668,7 +668,7 @@ const TokensContent = () => {
                     duration: parseInt(transition.duration) / 1000,
                     repeat: Infinity,
                     repeatDelay: 1,
-                    ease: [0.33, 1, 0.68, 1],
+                    ease: [0.33, 1, 0.68, 1] as const,
                   }}
                 />
               </div>

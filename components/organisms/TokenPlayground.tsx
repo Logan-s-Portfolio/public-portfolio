@@ -107,9 +107,9 @@ export const TokenPlayground = ({
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h2" variant="hero" id="token-playground-heading" className="mb-4">
+          <Heading as="h2" variant="display-2xl" id="token-playground-heading" className="mb-4">
             {heading}
           </Heading>
           <Text variant="lead" className="mx-auto max-w-3xl text-neutral-600">
@@ -122,9 +122,9 @@ export const TokenPlayground = ({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] as const }}
           >
-            <Heading as="h3" variant="title" className="mb-8">
+            <Heading as="h3" variant="h3" className="mb-8">
               Shadows (Material Design 3)
             </Heading>
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
@@ -159,9 +159,9 @@ export const TokenPlayground = ({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] as const }}
           >
-            <Heading as="h3" variant="title" className="mb-8">
+            <Heading as="h3" variant="h3" className="mb-8">
               Border Radius (8-Point Grid)
             </Heading>
             <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-7">
@@ -196,9 +196,9 @@ export const TokenPlayground = ({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.33, 1, 0.68, 1] as const }}
           >
-            <Heading as="h3" variant="title" className="mb-8">
+            <Heading as="h3" variant="h3" className="mb-8">
               Transitions & Easing
             </Heading>
             <div className="grid gap-6 md:grid-cols-3">
@@ -235,7 +235,7 @@ export const TokenPlayground = ({
                       }
                       transition={{
                         duration: transition.duration / 1000,
-                        ease: [0.33, 1, 0.68, 1],
+                        ease: [0.33, 1, 0.68, 1] as const,
                       }}
                     />
                   </div>
@@ -248,9 +248,9 @@ export const TokenPlayground = ({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
           >
-            <Heading as="h3" variant="title" className="mb-8">
+            <Heading as="h3" variant="h3" className="mb-8">
               Z-Index Layers (1000-Unit Scale)
             </Heading>
             <div className="relative h-96 overflow-hidden rounded-2xl border-2 border-neutral-200 bg-neutral-100">
@@ -271,7 +271,7 @@ export const TokenPlayground = ({
                     transition={{
                       duration: 0.6,
                       delay: 0.8 + index * 0.1,
-                      ease: [0.33, 1, 0.68, 1],
+                      ease: [0.33, 1, 0.68, 1] as const,
                     }}
                   >
                     <Text variant="small" className="font-mono font-bold text-white">
@@ -293,9 +293,9 @@ export const TokenPlayground = ({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 1, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.8, delay: 1, ease: [0.33, 1, 0.68, 1] as const }}
           >
-            <Heading as="h3" variant="title" className="mb-8">
+            <Heading as="h3" variant="h3" className="mb-8">
               Opacity Levels (Accessibility-Compliant)
             </Heading>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
@@ -325,9 +325,9 @@ export const TokenPlayground = ({
           className="mt-24 rounded-2xl border-2 border-sage-200 bg-sage-50 p-8 md:p-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 1.2, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h3" variant="title" className="mb-6">
+          <Heading as="h3" variant="h3" className="mb-6">
             Token Combination Preview
           </Heading>
           <Text variant="body" className="mb-8 text-neutral-600">
@@ -348,7 +348,7 @@ export const TokenPlayground = ({
             transition={{
               duration:
                 transitionTokens.find((t) => t.name === selectedTransition)?.duration / 1000 || 0.3,
-              ease: [0.33, 1, 0.68, 1],
+              ease: [0.33, 1, 0.68, 1] as const,
             }}
           >
             <div className="flex h-full flex-col items-center justify-center text-center">

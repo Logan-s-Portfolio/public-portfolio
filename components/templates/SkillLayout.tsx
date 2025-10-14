@@ -69,7 +69,7 @@ export const SkillLayout = ({
         </div>
         <Heading
           as="h3"
-          variant="section"
+          variant="h3"
           className="mb-2 font-fraunces text-lg font-semibold text-neutral-900"
         >
           {name}
@@ -87,7 +87,7 @@ export const SkillLayout = ({
         <div className="rounded-xl bg-neutral-50 p-6">
           <Heading
             as="h4"
-            variant="section"
+            variant="h3"
             className="mb-4 font-fraunces text-base font-semibold text-neutral-900"
           >
             Related Skills
@@ -119,7 +119,7 @@ export const SkillLayout = ({
       {/* Examples Section */}
       {examples.length > 0 && (
         <section className="mb-16">
-          <Heading as="h2" variant="title" className="mb-8">
+          <Heading as="h2" variant="h3" className="mb-8">
             Examples
           </Heading>
           <div className="space-y-8">
@@ -139,7 +139,7 @@ export const SkillLayout = ({
                 <div className="p-6">
                   <Heading
                     as="h3"
-                    variant="section"
+                    variant="h3"
                     className="mb-3 font-fraunces text-xl font-semibold text-neutral-900"
                   >
                     {example.title}
@@ -163,7 +163,7 @@ export const SkillLayout = ({
 
       {/* How I Use It Section */}
       <section className="mb-16">
-        <Heading as="h2" variant="title" className="mb-6">
+        <Heading as="h2" variant="h3" className="mb-6">
           How I Use It
         </Heading>
         <div className="space-y-6">{howIUseIt}</div>
@@ -171,7 +171,7 @@ export const SkillLayout = ({
 
       {/* My Approach Section */}
       <section className="mb-16">
-        <Heading as="h2" variant="title" className="mb-6">
+        <Heading as="h2" variant="h3" className="mb-6">
           My Approach
         </Heading>
         <div className="space-y-6">{myApproach}</div>

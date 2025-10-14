@@ -6,47 +6,12 @@
 
 "use client";
 
-import { SideNav } from "@/components/organisms/SideNav";
+import Link from "next/link";
+import { Navbar } from "@/components/organisms/Navbar";
 import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
+import { Footer } from "@/components/organisms/Footer";
+import { Heading } from "@/components/atoms/Heading";
 import type { ProjectData } from "@/components/organisms/ProjectsGrid";
-
-const navigationItems = [
-  {
-    id: "home",
-    label: "Home",
-    href: "/home",
-  },
-  {
-    id: "about",
-    label: "About",
-    href: "/about",
-  },
-  {
-    id: "resume",
-    label: "Resume",
-    href: "/resume",
-  },
-  {
-    id: "design-systems",
-    label: "Design Systems",
-    href: "/skills/design-systems",
-  },
-  {
-    id: "claude-code",
-    label: "Claude Code",
-    href: "/skills/claude-code",
-  },
-  {
-    id: "flutterflow",
-    label: "Flutterflow",
-    href: "/skills/flutterflow",
-  },
-  {
-    id: "duro-case-study",
-    label: "Duro Case Study",
-    href: "/case-studies/duro",
-  },
-];
 
 export default function HomePage() {
   const projects: [ProjectData, ProjectData, ProjectData, ProjectData] = [
@@ -117,20 +82,70 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-white via-white to-sage-50/30">
-      {/* Sidebar - always visible */}
-      <div className="fixed left-0 top-0 z-40 h-screen">
-        <SideNav items={navigationItems} currentPath="/home" />
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-sage-50/30 via-white to-terracotta-50/20">
+      {/* Decorative gradient shapes */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-terracotta-200/20 to-transparent rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-sage-200/20 to-transparent rounded-full blur-3xl -z-10" />
+
+      <Navbar currentPath="/home" />
+
+      {/* Main content area with top padding for floating navbar */}
+      <div className="pt-24">
+        {/* Hero Section */}
+        <section className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 xl:py-24">
+          <Heading as="h1" variant="display-2xl" className="mb-6">
+            Product Designer & Entrepreneur
+          </Heading>
+          <p className="font-inter text-lg md:text-xl text-neutral-700 max-w-3xl leading-relaxed mb-8">
+            Explore how I build design systems, mobile apps, and digital products that solve real problems.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-start gap-4">
+            <Link
+              href="/resume"
+              className="inline-flex items-center justify-center gap-2 font-inter font-medium rounded-md transition-colors transition-shadow duration-[300ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-600 focus-visible:ring-offset-2 bg-terracotta-600 text-white shadow-sm hover:bg-terracotta-700 hover:shadow-md active:bg-terracotta-800 active:shadow-sm h-12 px-6 text-lg"
+            >
+              View My Resume
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 font-inter font-medium rounded-md transition-colors transition-shadow duration-[300ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-600 focus-visible:ring-offset-2 border-2 border-terracotta-600 text-terracotta-600 bg-white shadow-sm hover:bg-terracotta-50 hover:shadow-md active:bg-terracotta-100 active:shadow-sm h-12 px-6 text-lg"
+            >
+              Get in Touch
+            </Link>
+          </div>
+        </section>
+
+        {/* Projects Grid - reduced padding, container controls spacing */}
+        <section className="px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
+          <ProjectsGrid
+            projects={projects}
+            isVisible={true}
+            isFramed={false}
+          />
+        </section>
+
+        {/* Bottom CTA Section - smaller than hero for hierarchy */}
+        <section className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16 text-center">
+          <Heading as="h2" variant="h2" className="mb-6">
+            Let's Build Something Together
+          </Heading>
+          <p className="font-inter text-lg md:text-xl text-neutral-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            I'm always interested in new projects and collaborations. Whether you need a design system,
+            a mobile app, or strategic product guidance—let's chat.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 font-inter font-medium rounded-md transition-colors transition-shadow duration-[300ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-600 focus-visible:ring-offset-2 bg-terracotta-600 text-white shadow-sm hover:bg-terracotta-700 hover:shadow-md active:bg-terracotta-800 active:shadow-sm h-12 px-6 text-lg"
+          >
+            Get in Touch
+          </Link>
+        </section>
       </div>
 
-      {/* Main content area with left padding for nav */}
-      <div className="pl-64">
-        <ProjectsGrid
-          projects={projects}
-          isVisible={true}
-          isFramed={true}
-        />
-      </div>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

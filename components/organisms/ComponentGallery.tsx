@@ -78,7 +78,7 @@ const components: Component[] = [
   { name: "ProjectShowcase", category: "organisms", description: "Featured project display", storybook: "?path=/story/organisms-projectshowcase" },
   { name: "ScrollAnimationSection", category: "organisms", description: "Scroll-triggered animations", storybook: "?path=/story/organisms-scrollanimationsection" },
   { name: "ScrollCards", category: "organisms", description: "Horizontal scroll cards", storybook: "" },
-  { name: "SideNav", category: "organisms", description: "Sidebar navigation menu", storybook: "" },
+  { name: "Navbar", category: "organisms", description: "Responsive navigation bar", storybook: "" },
   { name: "SkillsShowcase", category: "organisms", description: "Skills grid display", storybook: "?path=/story/organisms-skillsshowcase" },
   { name: "SpacingVisualizer", category: "organisms", description: "8-point grid showcase", storybook: "" },
   { name: "TestimonialsSection", category: "organisms", description: "Testimonials carousel", storybook: "?path=/story/organisms-testimonialssection" },
@@ -189,9 +189,9 @@ export const ComponentGallery = ({
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
         >
-          <Heading as="h2" variant="hero" id="component-gallery-heading" className="mb-4">
+          <Heading as="h2" variant="display-2xl" id="component-gallery-heading" className="mb-4">
             {heading}
           </Heading>
           <Text variant="lead" className="mx-auto max-w-3xl text-neutral-600">
@@ -204,7 +204,7 @@ export const ComponentGallery = ({
           className="mb-12 flex flex-wrap justify-center gap-3"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.33, 1, 0.68, 1] as const }}
         >
           {categories.map((category) => (
             <button
@@ -229,7 +229,7 @@ export const ComponentGallery = ({
           className="mb-12 mx-auto max-w-md"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] as const }}
         >
           <input
             type="text"
@@ -259,13 +259,13 @@ export const ComponentGallery = ({
                 transition={{
                   duration: 0.5,
                   delay: index * 0.03,
-                  ease: [0.33, 1, 0.68, 1],
+                  ease: [0.33, 1, 0.68, 1] as const,
                 }}
                 whileHover={{
                   y: -6,
                   transition: {
                     duration: 0.2,
-                    ease: [0.33, 1, 0.68, 1],
+                    ease: [0.33, 1, 0.68, 1] as const,
                   },
                 }}
               >
@@ -294,7 +294,7 @@ export const ComponentGallery = ({
 
                 {/* Component Info */}
                 <div className="mb-4">
-                  <Heading as="h3" variant="section" className="mb-2 pr-20">
+                  <Heading as="h3" variant="h3" className="mb-2 pr-20">
                     {component.name}
                   </Heading>
                   <Text variant="small" className="text-neutral-600">

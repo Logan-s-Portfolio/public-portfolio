@@ -144,7 +144,7 @@ export const AtomicShowcase = ({ className }: AtomicShowcaseProps) => {
                     transition={
                       shouldReduceMotion
                         ? { duration: 0 }
-                        : { duration: 0.3, ease: [0.33, 1, 0.68, 1] }
+                        : { duration: 0.3, ease: [0.33, 1, 0.68, 1] as const }
                     }
                   />
                 )}

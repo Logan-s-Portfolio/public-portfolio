@@ -48,18 +48,12 @@ export const ProjectsGrid = ({
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={cn(
-        "absolute inset-0 flex items-center justify-center px-4 md:px-6 lg:px-8 bg-white/95 backdrop-blur-sm",
+        "flex items-center justify-center",
         isVisible ? "" : "pointer-events-none",
         className
       )}
     >
-      <div
-        className="w-full max-w-6xl"
-        style={{
-          marginLeft: isFramed ? "256px" : 0,
-          transition: "margin 0.6s cubic-bezier(0.33, 1, 0.68, 1)",
-        }}
-      >
+      <div className="w-full max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.id} layout="grid">

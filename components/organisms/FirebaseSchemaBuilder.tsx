@@ -94,7 +94,7 @@ export const FirebaseSchemaBuilder = ({
       <div className="flex items-center justify-between border-b-2 border-terracotta-700 bg-terracotta-600 px-4 py-3 shadow-md">
         <div className="flex items-center gap-3">
           <Flame className="h-6 w-6 text-white" />
-          <Heading as="h3" variant="section" className="text-white">
+          <Heading as="h3" variant="h3" className="text-white">
             Firestore Database Schema
           </Heading>
         </div>
@@ -192,7 +192,7 @@ export const FirebaseSchemaBuilder = ({
                           : "text-sage-700"
                       )} />
                     </div>
-                    <Heading as="h3" variant="section" className="text-neutral-900">
+                    <Heading as="h3" variant="h3" className="text-neutral-900">
                       {selected.name} Collection
                     </Heading>
                   </div>

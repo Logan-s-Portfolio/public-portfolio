@@ -10,7 +10,7 @@
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { PageLayout } from "./PageLayout";
-import { SideNav, type NavItem } from "@/components/organisms/SideNav";
+import { Navbar } from "@/components/organisms/Navbar";
 import { Breadcrumb } from "@/components/molecules/Breadcrumb";
 import { Heading } from "@/components/atoms/Heading";
 
@@ -34,44 +34,6 @@ export interface DocsLayoutProps {
   offsetFooter?: boolean;
 }
 
-// Complete navigation structure for the entire docs site
-const navigationItems: NavItem[] = [
-  {
-    id: "home",
-    label: "Home",
-    href: "/",
-  },
-  {
-    id: "about",
-    label: "About",
-    href: "/about",
-  },
-  {
-    id: "resume",
-    label: "Resume",
-    href: "/resume",
-  },
-  {
-    id: "design-systems",
-    label: "Design Systems",
-    href: "/skills/design-systems",
-  },
-  {
-    id: "claude-code",
-    label: "Claude Code",
-    href: "/skills/claude-code",
-  },
-  {
-    id: "flutterflow",
-    label: "Flutterflow",
-    href: "/skills/flutterflow",
-  },
-  {
-    id: "duro-case-study",
-    label: "Duro Case Study",
-    href: "/case-studies/duro",
-  },
-];
 
 export const DocsLayout = ({
   children,
@@ -84,19 +46,12 @@ export const DocsLayout = ({
   offsetFooter,
 }: DocsLayoutProps) => {
   return (
-    <PageLayout currentPath={currentPath} maxWidth="full" showNavbar={showNavbar} bgClass={bgClass} offsetFooter={offsetFooter !== undefined ? offsetFooter : showSidebar}>
-      {/* Side Navigation - fixed positioned overlay */}
-      {showSidebar && (
-        <div className="fixed left-0 top-0 z-40 h-screen">
-          <SideNav
-            items={navigationItems}
-            currentPath={currentPath}
-          />
-        </div>
-      )}
+    <PageLayout currentPath={currentPath} maxWidth="full" showNavbar={false} bgClass={bgClass} offsetFooter={false}>
+      {/* Top Navigation */}
+      <Navbar currentPath={currentPath} />
 
-      {/* Main Content - offset by sidebar width */}
-      <div style={{ paddingLeft: showSidebar ? "256px" : 0 }}>
+      {/* Main Content - offset by floating navbar */}
+      <div className="pt-24">
         <div className="px-4 pt-8 pb-8 md:px-6 md:pt-12 md:pb-12 lg:px-8 lg:pt-16 lg:pb-16">
           <div className="mx-auto max-w-4xl">
             {/* Breadcrumbs */}
@@ -104,7 +59,7 @@ export const DocsLayout = ({
 
             {/* Page Title */}
             {pageTitle && (
-              <Heading as="h1" variant="hero" className="mb-8">
+              <Heading as="h1" variant="display-2xl" className="mb-8">
                 {pageTitle}
               </Heading>
             )}
