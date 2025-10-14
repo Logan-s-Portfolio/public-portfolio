@@ -10,7 +10,6 @@ import { Text } from "@/components/atoms/Text";
 import { Heading } from "@/components/atoms/Heading";
 import { Code } from "@/components/atoms/Code";
 import { Tag } from "@/components/atoms/Tag";
-import { TimelineSection } from "@/components/organisms/TimelineSection";
 import { Safari } from "@/components/ui/safari";
 import { Iphone } from "@/components/ui/iphone";
 import type { Metadata } from "next";
@@ -26,44 +25,6 @@ export default function DuroCaseStudyPage() {
     {
       label: "Duro Case Study",
       href: "/case-studies/duro",
-    },
-  ];
-
-  const timeline = [
-    {
-      id: "1",
-      date: "Month 1-2",
-      title: "MVP with Flutterflow",
-      description:
-        "Built initial marketplace MVP using Flutterflow + Firebase for rapid validation. Basic booking, ticketing, and Stripe integration.",
-    },
-    {
-      id: "2",
-      date: "Month 3-4",
-      title: "Partner Validation",
-      description:
-        "Partnered with TruFusion South Austin. Hosted 10+ events, gathered user feedback, validated marketplace model.",
-    },
-    {
-      id: "3",
-      date: "Month 5",
-      title: "Platform Rebuild Decision",
-      description:
-        "Hit Flutterflow limitations with complex features (RBAC, multi-tenancy, RRULE). Decided to rebuild on Next.js + Supabase.",
-    },
-    {
-      id: "4",
-      date: "Month 6-7",
-      title: "Next.js Rebuild",
-      description:
-        "Rebuilt platform from scratch with Next.js, Supabase (RLS for multi-tenancy), Stripe Connect, RRULE recurring events, Notion-like dashboard creator.",
-    },
-    {
-      id: "5",
-      date: "Month 8",
-      title: "Production Launch",
-      description:
-        "Launched rebuilt platform. Migrated existing users. Scaled to support multiple organizers.",
     },
   ];
 
@@ -109,21 +70,13 @@ export default function DuroCaseStudyPage() {
         <Heading as="h2" variant="h2" className="mb-8">
           Overview
         </Heading>
-        <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
           <div className="bg-white border border-neutral-200 rounded-lg p-6">
             <Text variant="small" className="mb-2 font-semibold uppercase tracking-wide text-neutral-600">
               Client
             </Text>
             <Text variant="body" className="text-neutral-900">
               Personal Project → Production Platform
-            </Text>
-          </div>
-          <div className="bg-white border border-neutral-200 rounded-lg p-6">
-            <Text variant="small" className="mb-2 font-semibold uppercase tracking-wide text-neutral-600">
-              Timeline
-            </Text>
-            <Text variant="body" className="text-neutral-900">
-              8 months (2024)
             </Text>
           </div>
           <div className="bg-white border border-neutral-200 rounded-lg p-6">
@@ -321,7 +274,7 @@ export default function DuroCaseStudyPage() {
         </Text>
 
         <Heading as="h3" variant="h3" className="mb-4 mt-8">
-          Phase 1: Flutterflow MVP (Months 1-4)
+          Phase 1: Flutterflow MVP
         </Heading>
         <Text variant="body" className="mb-4">
           Built initial marketplace with Flutterflow + Firebase for speed.
@@ -330,7 +283,7 @@ export default function DuroCaseStudyPage() {
         </Text>
 
         <Heading as="h3" variant="h3" className="mb-4 mt-8">
-          Phase 2: Next.js Rebuild (Months 5-8)
+          Phase 2: Next.js Rebuild
         </Heading>
         <Text variant="body" className="mb-4">
           Hit Flutterflow limitations with RBAC, multi-tenancy, and RRULE.
@@ -568,8 +521,7 @@ function OrganizerDashboard({ layout }: { layout: DashboardLayout }) {
         </Text>
         <ul className="list-disc space-y-2 pl-6 font-inter text-base leading-[1.6] text-neutral-700">
           <li>
-            Built MVP in 2 months with Flutterflow, rebuilt complex platform in
-            3 months with Next.js
+            Built MVP with Flutterflow for rapid validation, then rebuilt as complex platform with Next.js
           </li>
           <li>
             Implemented production-grade multi-tenancy with Supabase RLS (data
@@ -603,7 +555,7 @@ function OrganizerDashboard({ layout }: { layout: DashboardLayout }) {
         <ul className="mb-6 list-disc space-y-2 pl-6 font-inter text-base leading-[1.6] text-neutral-700">
           <li>
             <strong>Flutterflow for MVP Validation:</strong> Built and launched
-            in 2 months, validated product-market fit with real partner before
+            rapidly, validated product-market fit with real partner before
             investing in complex rebuild
           </li>
           <li>
@@ -614,7 +566,7 @@ function OrganizerDashboard({ layout }: { layout: DashboardLayout }) {
           <li>
             <strong>Stripe Connect for Marketplaces:</strong> Stripe's
             marketplace APIs handled all compliance (KYC, tax forms,
-            onboarding) - would've taken months to build manually
+            onboarding) - would've been complex to build manually
           </li>
           <li>
             <strong>RRULE Library:</strong> Used battle-tested RFC 5545
@@ -632,7 +584,7 @@ function OrganizerDashboard({ layout }: { layout: DashboardLayout }) {
         <ul className="list-disc space-y-2 pl-6 font-inter text-base leading-[1.6] text-neutral-700">
           <li>
             <strong>Start with Next.js:</strong> While Flutterflow was great
-            for MVP, I knew I'd hit limits. Could've saved rebuild time by
+            for MVP, I knew I'd hit limits. Could've avoided the rebuild by
             starting with Next.js + simplified feature set
           </li>
           <li>
@@ -651,14 +603,6 @@ function OrganizerDashboard({ layout }: { layout: DashboardLayout }) {
             clearer UI patterns upfront
           </li>
         </ul>
-      </section>
-
-      {/* Timeline */}
-      <section className="mb-16">
-        <Heading as="h2" variant="h2" className="mb-8">
-          Project Timeline
-        </Heading>
-        <TimelineSection milestones={timeline} />
       </section>
 
     </DocsLayout>

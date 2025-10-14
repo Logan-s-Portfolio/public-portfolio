@@ -3,14 +3,12 @@
  *
  * Clean intro page with typing animation and about section.
  * CTA button routes to /home for main portfolio.
+ * Note: Metadata is handled in root layout.tsx since this is a client component
  */
 
 "use client";
 
 import { ViewportHero } from "@/components/organisms/ViewportHero";
-
-// Force dynamic rendering - ViewportHero manipulates DOM
-export const dynamic = 'force-dynamic';
 
 export default function LandingPage() {
   const bioParagraphs = [

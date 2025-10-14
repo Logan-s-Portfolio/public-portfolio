@@ -52,7 +52,15 @@ export const DocsLayout = ({
 
       {/* Main Content - offset by floating navbar */}
       <div className="pt-24">
-        <div className="px-4 pt-8 pb-8 md:px-6 md:pt-12 md:pb-12 lg:px-8 lg:pt-16 lg:pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.6,
+            ease: [0.33, 1, 0.68, 1],
+          }}
+          className="px-4 pt-8 pb-8 md:px-6 md:pt-12 md:pb-12 lg:px-8 lg:pt-16 lg:pb-16"
+        >
           <div className="mx-auto max-w-4xl">
             {/* Breadcrumbs */}
             {breadcrumbs && <Breadcrumb items={breadcrumbs} className="mb-6" />}
@@ -67,7 +75,7 @@ export const DocsLayout = ({
             {/* Content */}
             {children}
           </div>
-        </div>
+        </motion.div>
       </div>
     </PageLayout>
   );

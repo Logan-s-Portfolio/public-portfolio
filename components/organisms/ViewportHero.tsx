@@ -84,12 +84,13 @@ export const ViewportHero = ({
     }
   }, [shouldReduceMotion, totalChars]);
 
-  // Lock scrolling and drive typing with wheel events
+  // Lock scrolling and drive typing with wheel/touch events
   useEffect(() => {
     if (shouldReduceMotion || isTypingComplete) return;
 
     let scrollAccumulator = 0;
     const scrollPerChar = 6; // How much wheel delta needed per character (higher = slower)
+    let touchStartY = 0;
 
     const handleWheel = (e: WheelEvent) => {
       if (isTypingComplete) return;
@@ -114,13 +115,49 @@ export const ViewportHero = ({
       }
     };
 
+    const handleTouchStart = (e: TouchEvent) => {
+      if (isTypingComplete) return;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isTypingComplete) return;
+
+      // Prevent all scrolling
+      e.preventDefault();
+
+      const touchY = e.touches[0].clientY;
+      const deltaY = Math.abs(touchStartY - touchY);
+
+      // Accumulate touch distance
+      scrollAccumulator += deltaY;
+      touchStartY = touchY;
+
+      // Calculate new character count based on accumulated scroll
+      const newCharCount = Math.min(
+        Math.floor(scrollAccumulator / scrollPerChar),
+        totalChars
+      );
+
+      setVisibleCharCount(newCharCount);
+
+      // Check if typing is complete
+      if (newCharCount >= totalChars) {
+        setIsTypingComplete(true);
+      }
+    };
+
     // Prevent scrolling on body
     document.body.style.overflow = 'hidden';
 
     window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
       // Don't unlock scroll here - let the next useEffect handle it
     };
   }, [isTypingComplete, totalChars, shouldReduceMotion]);
