@@ -35,7 +35,7 @@ export const Navbar = ({ currentPath, className }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   // Separate regular nav items from CTA
   const regularNavItems = navItems.filter(item => item.name !== "Get in Touch");
