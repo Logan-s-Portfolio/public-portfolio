@@ -55,7 +55,7 @@ export const AnimatedBackground = ({
         transition: {
           duration: 10,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
         },
       };
 
@@ -73,7 +73,7 @@ export const AnimatedBackground = ({
             duration,
             delay,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "easeInOut" as const,
           },
         };
 
