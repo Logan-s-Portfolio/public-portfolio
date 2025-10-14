@@ -151,7 +151,7 @@ export const AtomicDesignShowcase = ({ className }: AtomicDesignShowcaseProps) =
               "cursor-pointer rounded-full transition-all",
               viewMode !== "complete" && "ring-4 ring-terracotta-500 ring-offset-4"
             )}>
-              <Avatar size="lg" initials="LB" />
+              <Avatar size="lg" fallback="LB" alt="Logan Bell" />
             </div>
             {viewMode !== "complete" && (
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-terracotta-600 text-white px-2 py-1 rounded text-xs font-semibold">
