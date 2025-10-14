@@ -396,35 +396,35 @@ export const ViewportHero = ({
               </AnimatePresence>
             </div>
           </div>
-
-          {/* Scroll indicator - hide when typing is complete */}
-          {!isTypingComplete && (
-            <motion.div
-              className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-            >
-              <div className="flex flex-col items-center gap-2">
-                <span className="font-inter text-xs uppercase tracking-widest text-neutral-400">
-                  Scroll to type
-                </span>
-                <motion.div
-                  className="h-12 w-0.5 bg-neutral-300"
-                  animate={shouldReduceMotion ? {} : {
-                    scaleY: [1, 1.2, 1],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-              </div>
-            </motion.div>
-          )}
         </div>
       </div>
+
+      {/* Scroll indicator - hide when typing is complete */}
+      {!isTypingComplete && (
+        <motion.div
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-inter text-xs uppercase tracking-widest text-neutral-400">
+              Scroll to type
+            </span>
+            <motion.div
+              className="h-12 w-0.5 bg-neutral-300"
+              animate={shouldReduceMotion ? {} : {
+                scaleY: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          </div>
+        </motion.div>
+      )}
     </motion.section>
   );
 };
