@@ -40,6 +40,7 @@ export const FirebaseSchemaBuilder = ({
   className,
 }: FirebaseSchemaBuilderProps) => {
   const [selectedCollection, setSelectedCollection] = useState<string | null>("users");
+  const [activeTab, setActiveTab] = useState<"collections" | "fields">("collections");
 
   const collections: Collection[] = [
     {
@@ -83,6 +84,12 @@ export const FirebaseSchemaBuilder = ({
 
   const selected = collections.find((c) => c.name === selectedCollection);
 
+  const handleCollectionSelect = (collectionName: string) => {
+    setSelectedCollection(collectionName);
+    // Auto-switch to fields tab on mobile when collection is selected
+    setActiveTab("fields");
+  };
+
   return (
     <div
       className={cn(
@@ -106,9 +113,41 @@ export const FirebaseSchemaBuilder = ({
         </button>
       </div>
 
+      {/* Mobile Tab Switcher */}
+      <div className="md:hidden border-b-2 border-neutral-200 bg-neutral-50 p-2">
+        <div className="flex gap-2">
+          <button
+            onClick={() => setActiveTab("collections")}
+            className={cn(
+              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
+              activeTab === "collections"
+                ? "bg-terracotta-600 text-white shadow-sm"
+                : "bg-white text-neutral-700 hover:bg-neutral-100"
+            )}
+          >
+            Collections
+          </button>
+          <button
+            onClick={() => setActiveTab("fields")}
+            className={cn(
+              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
+              activeTab === "fields"
+                ? "bg-terracotta-600 text-white shadow-sm"
+                : "bg-white text-neutral-700 hover:bg-neutral-100"
+            )}
+          >
+            Fields
+          </button>
+        </div>
+      </div>
+
       <div className="flex" style={{ minHeight: "400px" }}>
         {/* Collections List */}
-        <div className="w-64 border-r-2 border-neutral-200 bg-neutral-50 p-4">
+        <div className={cn(
+          "border-r-2 border-neutral-200 bg-neutral-50 p-4",
+          "md:w-64",
+          activeTab === "collections" ? "flex-1" : "hidden md:block"
+        )}>
           <div className="mb-3 flex items-center justify-between">
             <Text variant="small" className="font-semibold text-neutral-700 uppercase tracking-wide">
               Collections
@@ -135,7 +174,7 @@ export const FirebaseSchemaBuilder = ({
                         : "bg-sage-100 border-2 border-sage-400"
                       : "bg-white border-2 border-neutral-200 hover:border-neutral-300"
                   )}
-                  onClick={() => setSelectedCollection(collection.name)}
+                  onClick={() => handleCollectionSelect(collection.name)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -167,7 +206,11 @@ export const FirebaseSchemaBuilder = ({
         </div>
 
         {/* Field Details */}
-        <div className="flex-1 p-6">
+        <div className={cn(
+          "p-6",
+          "md:flex-1",
+          activeTab === "fields" ? "flex-1" : "hidden md:block"
+        )}>
           <AnimatePresence mode="wait">
             {selected && (
               <motion.div

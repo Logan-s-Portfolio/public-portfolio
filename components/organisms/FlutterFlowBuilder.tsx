@@ -46,6 +46,7 @@ export const FlutterFlowBuilder = ({
   const [selectedPanel, setSelectedPanel] = useState<
     "nav" | "canvas" | "properties" | null
   >(null);
+  const [activeTab, setActiveTab] = useState<"nav" | "canvas" | "properties">("canvas");
 
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", step: null },
@@ -103,12 +104,53 @@ export const FlutterFlowBuilder = ({
         </div>
       </div>
 
+      {/* Mobile Tab Switcher */}
+      <div className="md:hidden border-b-2 border-neutral-200 bg-neutral-50 p-2">
+        <div className="flex gap-2">
+          <button
+            onClick={() => setActiveTab("nav")}
+            className={cn(
+              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
+              activeTab === "nav"
+                ? "bg-terracotta-600 text-white shadow-sm"
+                : "bg-white text-neutral-700 hover:bg-neutral-100"
+            )}
+          >
+            Navigation
+          </button>
+          <button
+            onClick={() => setActiveTab("canvas")}
+            className={cn(
+              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
+              activeTab === "canvas"
+                ? "bg-terracotta-600 text-white shadow-sm"
+                : "bg-white text-neutral-700 hover:bg-neutral-100"
+            )}
+          >
+            Canvas
+          </button>
+          <button
+            onClick={() => setActiveTab("properties")}
+            className={cn(
+              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
+              activeTab === "properties"
+                ? "bg-terracotta-600 text-white shadow-sm"
+                : "bg-white text-neutral-700 hover:bg-neutral-100"
+            )}
+          >
+            Properties
+          </button>
+        </div>
+      </div>
+
       {/* Main Layout: Nav | Canvas | Properties */}
       <div className="flex" style={{ height: "500px" }}>
         {/* Navigation Menu */}
         <motion.div
           className={cn(
-            "w-56 border-r-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
+            "border-r-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
+            "md:w-56",
+            activeTab === "nav" ? "flex-1" : "hidden md:block",
             selectedPanel === "nav" && "bg-sage-50"
           )}
           onClick={() => setSelectedPanel("nav")}
@@ -143,7 +185,9 @@ export const FlutterFlowBuilder = ({
         {/* Canvas */}
         <motion.div
           className={cn(
-            "flex-1 bg-neutral-100 p-6 overflow-hidden relative",
+            "bg-neutral-100 p-6 overflow-hidden relative",
+            "md:flex-1",
+            activeTab === "canvas" ? "flex-1" : "hidden md:block",
             selectedPanel === "canvas" && "bg-sage-50"
           )}
           onClick={() => setSelectedPanel("canvas")}
@@ -345,7 +389,9 @@ export const FlutterFlowBuilder = ({
         {/* Properties Panel */}
         <motion.div
           className={cn(
-            "w-64 border-l-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
+            "border-l-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
+            "md:w-64",
+            activeTab === "properties" ? "flex-1" : "hidden md:block",
             selectedPanel === "properties" && "bg-sage-50"
           )}
           onClick={() => setSelectedPanel("properties")}
