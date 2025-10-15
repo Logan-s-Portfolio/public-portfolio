@@ -46,7 +46,6 @@ export const FlutterFlowBuilder = ({
   const [selectedPanel, setSelectedPanel] = useState<
     "nav" | "canvas" | "properties" | null
   >(null);
-  const [activeTab, setActiveTab] = useState<"nav" | "canvas" | "properties">("canvas");
 
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", step: null },
@@ -63,6 +62,61 @@ export const FlutterFlowBuilder = ({
     { icon: Cloud, label: "Cloud Functions", step: "cloud-functions" },
   ];
 
+  // Mobile feature cards - highlight relevant tools for each step
+  const getMobileFeatures = () => {
+    switch (highlightStep) {
+      case "schema":
+        return [
+          { icon: Flame, label: "Firestore", description: "NoSQL database integration", color: "terracotta" },
+          { icon: Box, label: "Data Types", description: "Schema field definitions", color: "sage" },
+          { icon: Settings, label: "Collections", description: "Organize data structure", color: "terracotta" },
+        ];
+      case "storyboard":
+        return [
+          { icon: Presentation, label: "Storyboard", description: "Visual app flow mapping", color: "terracotta" },
+          { icon: FileText, label: "Page Selector", description: "Navigate between pages", color: "sage" },
+          { icon: Package, label: "Widget Palette", description: "Drag-drop UI components", color: "terracotta" },
+        ];
+      case "wireframe":
+        return [
+          { icon: Package, label: "Widget Palette", description: "Drag-drop UI components", color: "terracotta" },
+          { icon: GitBranch, label: "Widget Tree", description: "View component hierarchy", color: "sage" },
+          { icon: FileText, label: "Page Selector", description: "Navigate between pages", color: "terracotta" },
+        ];
+      case "api-calls":
+      case "functional":
+        return [
+          { icon: Globe, label: "API Calls", description: "Configure REST endpoints", color: "terracotta" },
+          { icon: Settings, label: "Actions", description: "Wire onTap, onChange events", color: "sage" },
+          { icon: Flame, label: "Firestore Queries", description: "Connect to database", color: "terracotta" },
+        ];
+      case "design":
+        return [
+          { icon: ImageIcon, label: "Theme Settings", description: "Brand colors and fonts", color: "terracotta" },
+          { icon: Package, label: "Custom Components", description: "Reusable UI patterns", color: "sage" },
+          { icon: Presentation, label: "Animations", description: "Smooth transitions", color: "terracotta" },
+        ];
+      case "custom":
+        return [
+          { icon: Code, label: "Custom Functions", description: "Write synchronous Dart logic", color: "terracotta" },
+          { icon: Settings, label: "Custom Actions", description: "Async operations with APIs", color: "sage" },
+        ];
+      case "cloud-functions":
+        return [
+          { icon: Cloud, label: "Cloud Functions", description: "Backend logic on GCP", color: "terracotta" },
+          { icon: Code, label: "Server-side Code", description: "Node.js Firebase functions", color: "sage" },
+        ];
+      default:
+        return [
+          { icon: Package, label: "Widget Builder", description: "Drag-drop interface", color: "terracotta" },
+          { icon: Flame, label: "Firebase", description: "Backend integration", color: "sage" },
+          { icon: Code, label: "Custom Code", description: "Extend with Dart", color: "terracotta" },
+        ];
+    }
+  };
+
+  const mobileFeatures = getMobileFeatures();
+
   return (
     <div
       className={cn(
@@ -70,6 +124,57 @@ export const FlutterFlowBuilder = ({
         className
       )}
     >
+      {/* Mobile Feature Cards - Only visible on mobile */}
+      <div className="md:hidden">
+        <div className="border-b-2 border-neutral-200 bg-neutral-50 px-4 py-3">
+          <Text variant="small" className="font-semibold text-neutral-700">
+            FlutterFlow Tools Used
+          </Text>
+        </div>
+        <div className="p-4 space-y-3">
+          {mobileFeatures.map((feature, index) => {
+            const IconComponent = feature.icon;
+            return (
+              <motion.div
+                key={feature.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={cn(
+                  "rounded-lg border-2 p-4",
+                  feature.color === "terracotta"
+                    ? "bg-terracotta-50 border-terracotta-200"
+                    : "bg-sage-50 border-sage-200"
+                )}
+              >
+                <div className="flex items-start gap-3">
+                  <div
+                    className={cn(
+                      "flex h-10 w-10 items-center justify-center rounded-lg shrink-0",
+                      feature.color === "terracotta"
+                        ? "bg-terracotta-600"
+                        : "bg-sage-600"
+                    )}
+                  >
+                    <IconComponent className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <Text variant="small" className="font-semibold text-neutral-900 mb-1">
+                      {feature.label}
+                    </Text>
+                    <Text variant="small" className="text-neutral-600">
+                      {feature.description}
+                    </Text>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Desktop Mockup - Only visible on desktop */}
+      <div className="hidden md:block">
       {/* Toolbar */}
       <div className="flex items-center justify-between border-b-2 border-neutral-200 bg-neutral-50 px-4 py-3">
         <div className="flex items-center gap-3">
@@ -104,53 +209,12 @@ export const FlutterFlowBuilder = ({
         </div>
       </div>
 
-      {/* Mobile Tab Switcher */}
-      <div className="md:hidden border-b-2 border-neutral-200 bg-neutral-50 p-2">
-        <div className="flex gap-2">
-          <button
-            onClick={() => setActiveTab("nav")}
-            className={cn(
-              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
-              activeTab === "nav"
-                ? "bg-terracotta-600 text-white shadow-sm"
-                : "bg-white text-neutral-700 hover:bg-neutral-100"
-            )}
-          >
-            Navigation
-          </button>
-          <button
-            onClick={() => setActiveTab("canvas")}
-            className={cn(
-              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
-              activeTab === "canvas"
-                ? "bg-terracotta-600 text-white shadow-sm"
-                : "bg-white text-neutral-700 hover:bg-neutral-100"
-            )}
-          >
-            Canvas
-          </button>
-          <button
-            onClick={() => setActiveTab("properties")}
-            className={cn(
-              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
-              activeTab === "properties"
-                ? "bg-terracotta-600 text-white shadow-sm"
-                : "bg-white text-neutral-700 hover:bg-neutral-100"
-            )}
-          >
-            Properties
-          </button>
-        </div>
-      </div>
-
       {/* Main Layout: Nav | Canvas | Properties */}
       <div className="flex" style={{ height: "500px" }}>
         {/* Navigation Menu */}
         <motion.div
           className={cn(
-            "border-r-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
-            "md:w-56",
-            activeTab === "nav" ? "flex-1" : "hidden md:block",
+            "w-56 border-r-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
             selectedPanel === "nav" && "bg-sage-50"
           )}
           onClick={() => setSelectedPanel("nav")}
@@ -185,9 +249,7 @@ export const FlutterFlowBuilder = ({
         {/* Canvas */}
         <motion.div
           className={cn(
-            "bg-neutral-100 p-6 overflow-hidden relative",
-            "md:flex-1",
-            activeTab === "canvas" ? "flex-1" : "hidden md:block",
+            "flex-1 bg-neutral-100 p-6 overflow-hidden relative",
             selectedPanel === "canvas" && "bg-sage-50"
           )}
           onClick={() => setSelectedPanel("canvas")}
@@ -389,9 +451,7 @@ export const FlutterFlowBuilder = ({
         {/* Properties Panel */}
         <motion.div
           className={cn(
-            "border-l-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
-            "md:w-64",
-            activeTab === "properties" ? "flex-1" : "hidden md:block",
+            "w-64 border-l-2 border-neutral-200 bg-neutral-50 p-3 overflow-y-auto",
             selectedPanel === "properties" && "bg-sage-50"
           )}
           onClick={() => setSelectedPanel("properties")}
@@ -452,6 +512,8 @@ export const FlutterFlowBuilder = ({
           {!selectedPanel && "Click any panel to explore • 4-panel interface for rapid development"}
         </Text>
       </div>
+      </div>
+      {/* End Desktop Mockup */}
     </div>
   );
 };

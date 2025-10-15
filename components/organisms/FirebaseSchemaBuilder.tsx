@@ -40,7 +40,7 @@ export const FirebaseSchemaBuilder = ({
   className,
 }: FirebaseSchemaBuilderProps) => {
   const [selectedCollection, setSelectedCollection] = useState<string | null>("users");
-  const [activeTab, setActiveTab] = useState<"collections" | "fields">("collections");
+  const [expandedCollection, setExpandedCollection] = useState<string | null>("users");
 
   const collections: Collection[] = [
     {
@@ -84,10 +84,8 @@ export const FirebaseSchemaBuilder = ({
 
   const selected = collections.find((c) => c.name === selectedCollection);
 
-  const handleCollectionSelect = (collectionName: string) => {
-    setSelectedCollection(collectionName);
-    // Auto-switch to fields tab on mobile when collection is selected
-    setActiveTab("fields");
+  const toggleExpanded = (collectionName: string) => {
+    setExpandedCollection(expandedCollection === collectionName ? null : collectionName);
   };
 
   return (
@@ -113,41 +111,105 @@ export const FirebaseSchemaBuilder = ({
         </button>
       </div>
 
-      {/* Mobile Tab Switcher */}
-      <div className="md:hidden border-b-2 border-neutral-200 bg-neutral-50 p-2">
-        <div className="flex gap-2">
-          <button
-            onClick={() => setActiveTab("collections")}
-            className={cn(
-              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
-              activeTab === "collections"
-                ? "bg-terracotta-600 text-white shadow-sm"
-                : "bg-white text-neutral-700 hover:bg-neutral-100"
-            )}
-          >
-            Collections
-          </button>
-          <button
-            onClick={() => setActiveTab("fields")}
-            className={cn(
-              "flex-1 rounded-lg px-3 py-2 font-inter text-sm font-medium transition-all",
-              activeTab === "fields"
-                ? "bg-terracotta-600 text-white shadow-sm"
-                : "bg-white text-neutral-700 hover:bg-neutral-100"
-            )}
-          >
-            Fields
-          </button>
-        </div>
+      {/* Mobile Accordion View - Only visible on mobile */}
+      <div className="md:hidden p-4 space-y-3">
+        {collections.map((collection) => {
+          const IconComponent = collection.icon;
+          const isExpanded = expandedCollection === collection.name;
+          return (
+            <div key={collection.name}>
+              <button
+                onClick={() => toggleExpanded(collection.name)}
+                className={cn(
+                  "w-full rounded-lg border-2 p-4 text-left transition-all",
+                  collection.color === "terracotta"
+                    ? "bg-terracotta-50 border-terracotta-200 hover:border-terracotta-300"
+                    : "bg-sage-50 border-sage-200 hover:border-sage-300"
+                )}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={cn(
+                        "flex h-10 w-10 items-center justify-center rounded-lg",
+                        collection.color === "terracotta"
+                          ? "bg-terracotta-600"
+                          : "bg-sage-600"
+                      )}
+                    >
+                      <IconComponent className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <Text variant="small" className="font-semibold text-neutral-900">
+                        {collection.name}
+                      </Text>
+                      <Text variant="small" className="text-neutral-600">
+                        {collection.fields.length} fields
+                      </Text>
+                    </div>
+                  </div>
+                  <motion.div
+                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Text variant="small" className="text-neutral-600">▼</Text>
+                  </motion.div>
+                </div>
+              </button>
+
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-2 space-y-2 pl-4">
+                      {collection.fields.map((field) => (
+                        <div
+                          key={field.name}
+                          className={cn(
+                            "rounded-lg border p-3",
+                            collection.color === "terracotta"
+                              ? "bg-terracotta-100 border-terracotta-200"
+                              : "bg-sage-100 border-sage-200"
+                          )}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <Text variant="small" className="font-mono font-semibold text-neutral-900">
+                                  {field.name}
+                                </Text>
+                                {field.isList && (
+                                  <span className="rounded bg-neutral-700 px-2 py-0.5 text-xs font-bold text-white">
+                                    LIST
+                                  </span>
+                                )}
+                              </div>
+                              <Text variant="small" className="text-neutral-600 mt-0.5">
+                                {field.type}
+                              </Text>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
       </div>
 
+      {/* Desktop Mockup - Only visible on desktop */}
+      <div className="hidden md:block">
       <div className="flex" style={{ minHeight: "400px" }}>
         {/* Collections List */}
-        <div className={cn(
-          "border-r-2 border-neutral-200 bg-neutral-50 p-4",
-          "md:w-64",
-          activeTab === "collections" ? "flex-1" : "hidden md:block"
-        )}>
+        <div className="w-64 border-r-2 border-neutral-200 bg-neutral-50 p-4">
           <div className="mb-3 flex items-center justify-between">
             <Text variant="small" className="font-semibold text-neutral-700 uppercase tracking-wide">
               Collections
@@ -174,7 +236,7 @@ export const FirebaseSchemaBuilder = ({
                         : "bg-sage-100 border-2 border-sage-400"
                       : "bg-white border-2 border-neutral-200 hover:border-neutral-300"
                   )}
-                  onClick={() => handleCollectionSelect(collection.name)}
+                  onClick={() => setSelectedCollection(collection.name)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -206,11 +268,7 @@ export const FirebaseSchemaBuilder = ({
         </div>
 
         {/* Field Details */}
-        <div className={cn(
-          "p-6",
-          "md:flex-1",
-          activeTab === "fields" ? "flex-1" : "hidden md:block"
-        )}>
+        <div className="flex-1 p-6">
           <AnimatePresence mode="wait">
             {selected && (
               <motion.div
@@ -329,6 +387,8 @@ export const FirebaseSchemaBuilder = ({
           Field names cannot be changed after creation • Use AI Gen for complex schemas
         </Text>
       </div>
+      </div>
+      {/* End Desktop Mockup */}
     </div>
   );
 };
