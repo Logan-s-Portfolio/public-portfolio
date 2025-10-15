@@ -81,10 +81,10 @@ export default function ContactPage() {
               Schedule a Meeting
             </Heading>
 
-            <div className="relative" style={{ minWidth: '320px', height: '750px' }}>
+            <div className="relative overflow-hidden rounded-xl" style={{ minWidth: '320px', height: '750px' }}>
               {/* Skeleton Loader */}
               {!isCalendlyLoaded && (
-                <div className="absolute inset-0 rounded-xl border-2 border-neutral-200 bg-gradient-to-br from-terracotta-50 via-white to-sage-50 shadow-lg overflow-hidden">
+                <div className="absolute inset-0 border-2 border-neutral-200 bg-gradient-to-br from-terracotta-50 via-white to-sage-50 shadow-lg overflow-hidden z-10">
                   <div className="flex flex-col items-center justify-center h-full space-y-6 p-8">
                     {/* Animated Calendar Icon */}
                     <div className="relative">
@@ -123,12 +123,10 @@ export default function ContactPage() {
 
               {/* Calendly Widget */}
               <div
-                className="calendly-inline-widget"
+                className="calendly-inline-widget absolute inset-0"
                 data-url="https://calendly.com/meetforcoffee/30min"
                 data-resize="true"
                 style={{
-                  minWidth: '320px',
-                  height: '750px',
                   opacity: isCalendlyLoaded ? 1 : 0,
                   transition: 'opacity 0.5s ease-in-out',
                 }}
@@ -138,7 +136,11 @@ export default function ContactPage() {
 
           <style jsx>{`
             .calendly-inline-widget {
-              overflow-y: hidden !important;
+              overflow: hidden !important;
+            }
+            .calendly-inline-widget iframe {
+              height: 100% !important;
+              min-height: 750px !important;
             }
           `}</style>
 
