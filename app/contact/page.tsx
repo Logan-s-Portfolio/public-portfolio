@@ -6,14 +6,16 @@
 
 "use client";
 
+import { useState } from "react";
 import Script from "next/script";
 import { DocsLayout } from "@/components/templates/DocsLayout";
 import { Heading } from "@/components/atoms/Heading";
 import { Text } from "@/components/atoms/Text";
 import { Tag } from "@/components/atoms/Tag";
-import { Mail, Linkedin } from "lucide-react";
+import { Mail, Linkedin, Calendar, Loader2 } from "lucide-react";
 
 export default function ContactPage() {
+  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
   const breadcrumbs = [
     { label: "Contact", href: "/contact" },
   ];
@@ -29,7 +31,13 @@ export default function ContactPage() {
       {/* Calendly widget script */}
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
+        onLoad={() => {
+          // Wait a brief moment for Calendly to initialize the widget
+          setTimeout(() => {
+            setIsCalendlyLoaded(true);
+          }, 500);
+        }}
       />
 
       <DocsLayout
@@ -73,12 +81,59 @@ export default function ContactPage() {
               Schedule a Meeting
             </Heading>
 
-            <div
-              className="calendly-inline-widget"
-              data-url="https://calendly.com/meetforcoffee/30min"
-              data-resize="true"
-              style={{ minWidth: '320px', height: '750px' }}
-            />
+            <div className="relative" style={{ minWidth: '320px', height: '750px' }}>
+              {/* Skeleton Loader */}
+              {!isCalendlyLoaded && (
+                <div className="absolute inset-0 rounded-xl border-2 border-neutral-200 bg-gradient-to-br from-terracotta-50 via-white to-sage-50 shadow-lg overflow-hidden">
+                  <div className="flex flex-col items-center justify-center h-full space-y-6 p-8">
+                    {/* Animated Calendar Icon */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-terracotta-400 rounded-2xl blur-xl opacity-30 animate-pulse" />
+                      <div className="relative bg-white rounded-2xl p-6 shadow-xl">
+                        <Calendar className="h-16 w-16 text-terracotta-600" />
+                      </div>
+                    </div>
+
+                    {/* Loading Text */}
+                    <div className="text-center space-y-2">
+                      <div className="flex items-center gap-2 justify-center">
+                        <Loader2 className="h-5 w-5 text-terracotta-600 animate-spin" />
+                        <Text variant="body" className="font-semibold text-neutral-900">
+                          Loading calendar...
+                        </Text>
+                      </div>
+                      <Text variant="small" className="text-neutral-600">
+                        This will only take a moment
+                      </Text>
+                    </div>
+
+                    {/* Animated Bars (skeleton) */}
+                    <div className="w-full max-w-md space-y-3 mt-8">
+                      {[...Array(3)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="h-16 rounded-lg bg-neutral-200 animate-pulse"
+                          style={{ animationDelay: `${i * 0.15}s` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Calendly Widget */}
+              <div
+                className="calendly-inline-widget"
+                data-url="https://calendly.com/meetforcoffee/30min"
+                data-resize="true"
+                style={{
+                  minWidth: '320px',
+                  height: '750px',
+                  opacity: isCalendlyLoaded ? 1 : 0,
+                  transition: 'opacity 0.5s ease-in-out',
+                }}
+              />
+            </div>
           </div>
 
           <style jsx>{`
