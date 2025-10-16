@@ -352,3 +352,12 @@ body {
     transform: translateX(100%) scaleX(0.3);
   }
 }
+
+/* ============================================================================
+   Custom Utilities
+   ============================================================================ */
+
+/* Radial gradient utility for soft effervescent backgrounds */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, var(--tw-gradient-stops));
+}
