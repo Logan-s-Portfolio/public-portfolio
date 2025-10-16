@@ -100,7 +100,7 @@ export const Navbar = ({ currentPath, className }: NavbarProps) => {
   return (
     <motion.div
       className={cn(
-        "fixed top-4 left-0 right-0 z-50 px-4 md:px-6 lg:px-8",
+        "fixed top-4 left-0 right-0 z-50",
         className
       )}
       initial={{ y: 0, opacity: 1 }}
@@ -114,7 +114,7 @@ export const Navbar = ({ currentPath, className }: NavbarProps) => {
       }}
     >
       {/* Container aligned with content (max-w-5xl) */}
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
         {/* Mobile: Unified Navbar */}
         <div className="md:hidden bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-neutral-200/50 px-6">
           <div className="flex items-center justify-between h-16">
