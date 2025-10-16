@@ -212,7 +212,7 @@ export const ViewportHero = ({
       {/* Content container - centered during hero, flows naturally during about */}
       <div className={cn(
         "flex min-h-[100svh] w-full shrink-0 px-6 md:px-8",
-        showAbout ? "items-start pt-24 pb-20 md:items-center md:pt-0 md:pb-0" : "items-center justify-center"
+        showAbout ? "items-start pt-24 pb-20 md:items-center md:justify-center md:pt-0 md:pb-0" : "items-center justify-center"
       )}>
         <div className="relative w-full max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
