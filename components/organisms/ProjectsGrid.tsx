@@ -1,7 +1,7 @@
 /**
  * ProjectsGrid Organism
  *
- * Grid of 4 project cards with scroll-based fade-in animation.
+ * Grid of 5 project cards with scroll-based fade-in animation.
  * Design System: 2x2 grid with simple opacity reveal.
  * Accessibility: Semantic HTML, reduced motion support
  */
@@ -26,8 +26,8 @@ export interface ProjectData {
 }
 
 export interface ProjectsGridProps {
-  /** Array of 4 project cards */
-  projects: [ProjectData, ProjectData, ProjectData, ProjectData];
+  /** Array of 5 project cards */
+  projects: [ProjectData, ProjectData, ProjectData, ProjectData, ProjectData];
   /** Whether the grid is visible (triggered after about section) */
   isVisible?: boolean;
   /** Whether sidebar is framed */
