@@ -85,7 +85,7 @@ export default function HomePage() {
     },
   ];
 
-  const projects: [ProjectData, ProjectData, ProjectData, ProjectData] = [
+  const projects: [ProjectData, ProjectData, ProjectData, ProjectData, ProjectData] = [
     {
       id: "design-systems",
       title: "Building Design Systems from Scratch",
@@ -123,7 +123,7 @@ export default function HomePage() {
       title: "Duro: Event Management Platform",
       description: "From concept to execution, designing a comprehensive event management platform with recurring events, real-time availability, and seamless booking workflows. See how I tackled complex scheduling logic with intuitive UX.",
       badge: "Case Study",
-      imageSrc: "/duro-case-study.png",
+      imageSrc: "/events.png",
       imageAlt: "Duro Event Management Platform Preview",
       tags: [
         { label: "Product Design", variant: "terracotta" },
@@ -132,6 +132,22 @@ export default function HomePage() {
         { label: "Scheduling", variant: "sage" },
       ],
       href: "/case-studies/duro",
+      linkText: "View Case Study",
+    },
+    {
+      id: "fund-frolic-case-study",
+      title: "Fund Frolic: AI-Powered Grant Discovery",
+      description: "Built the entire platform from scratch - React application, OpenAI integration, custom design system, and complete brand identity. Helping 500+ founders find grants in under a minute without giving up equity.",
+      badge: "Case Study",
+      imageSrc: "/fund-frolic-main.png",
+      imageAlt: "Fund Frolic Grant Discovery Platform Preview",
+      tags: [
+        { label: "React", variant: "terracotta" },
+        { label: "OpenAI API", variant: "sage" },
+        { label: "Design System", variant: "terracotta" },
+        { label: "Brand Design", variant: "sage" },
+      ],
+      href: "/case-studies/fund-frolic",
       linkText: "View Case Study",
     },
     {
